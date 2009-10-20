@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 from os.path import join
 
 name = 'dolmen.content'
-version = '0.2.1'
+version = '0.3dev'
 readme = open(join('src', 'dolmen', 'content', 'README.txt')).read()
 history = open(join('docs', 'HISTORY.txt')).read()
 
@@ -40,7 +40,7 @@ setup(name = name,
       namespace_packages = ['dolmen'],
       include_package_data = True,
       platforms = 'Any',
-      zip_safe = True,
+      zip_safe = False,
       tests_require = tests_require,
       install_requires = install_requires,
       extras_require = {'test': tests_require},
