@@ -2,19 +2,32 @@ from setuptools import setup, find_packages
 from os.path import join
 
 name = 'dolmen.content'
-version = '0.2'
-readme = open("README.txt").read()
-history = open(join('docs', 'HISTORY.txt')).read().replace(name + ' - ', '')
+version = '0.2.1'
+readme = open(join('src', 'dolmen', 'content', 'README.txt')).read()
+history = open(join('docs', 'HISTORY.txt')).read()
+
+install_requires = [
+    'setuptools',
+    'grok',
+    'dolmen.field',
+    'zope.dublincore',
+    ]
+
+tests_require = install_requires + [
+    'zope.testing',
+    'zope.app.testing',
+    'zope.app.zcmlfiles',
+    ]
 
 setup(name = name,
       version = version,
       description = 'Dolmen content-type framework',
-      long_description = readme[readme.find('\n\n'):] + '\n' + history,
+      long_description = readme + '\n\n' + history,
       keywords = 'Grok Zope3 CMS Dolmen Content',
       author = 'Souheil Chelfouh',
       author_email = 'souheil@chelfouh.com',
       url = 'http://gitweb.dolmen-project.org/',
-      download_url = 'http://pypi.python.org/pypi/dolmen.content',
+      download_url = '',
       license = 'GPL',
       packages=find_packages('src', exclude=['ez_setup']),
       package_dir={'': 'src'},
@@ -22,12 +35,10 @@ setup(name = name,
       include_package_data = True,
       platforms = 'Any',
       zip_safe = True,
-      install_requires=[
-          'setuptools',
-          'grok',
-          'dolmen.field',
-          'zope.dublincore',
-      ],
+      tests_require = tests_require,
+      install_requires = install_requires,
+      extras_require = {'test': tests_require},
+      test_suite="dolmen.content",
       classifiers = [
         'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
