@@ -2,15 +2,21 @@ from setuptools import setup, find_packages
 from os.path import join
 
 name = 'dolmen.content'
-version = '0.2.1'
+version = '0.3dev'
 readme = open(join('src', 'dolmen', 'content', 'README.txt')).read()
 history = open(join('docs', 'HISTORY.txt')).read()
 
 install_requires = [
     'setuptools',
     'grok',
+    'martian',
     'dolmen.field',
+    'zope.schema',
+    'zope.component',
+    'zope.interface',
     'zope.dublincore',
+    'zope.i18nmessageid',
+    'zope.app.publisher',
     ]
 
 tests_require = install_requires + [

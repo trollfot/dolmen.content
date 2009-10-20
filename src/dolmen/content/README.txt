@@ -67,7 +67,11 @@ The content can now be instanciated. As we can see here, the object is
 effectively providing the schema::
 
   >>> my_content = factory()
-  >>> my_content.text
-  u'N/A'
+
+  >>> my_content.__content_type__
+  'a simple content type'
+
   >>> IContentSchema.providedBy(my_content)
   True
+  >>> my_content.text
+  u'N/A'

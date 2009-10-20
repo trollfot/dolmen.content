@@ -11,7 +11,6 @@ from grokcore.formlib import formlib
 from grokcore.component.scan import determine_module_component
 
 from zope import component
-from zope.formlib import form
 from zope.interface import classImplements, verify, directlyProvides
 from zope.schema.fieldproperty import FieldProperty
 from zope.app.publisher.browser.icon import IconDirective
@@ -39,11 +38,10 @@ class ContentTypeGrokker(martian.ClassGrokker):
     martian.directive(grokcore.component.name)
     martian.directive(grokcore.security.require)
 
-
     def execute(self, class_, config, schema, icon,
                 name, factory, require, **kw):
 
-        formfields = form.FormFields(*schema)
+        formfields = formlib.Fields(*schema)
         for formfield in formfields:
             fname = formfield.__name__
             if not hasattr(class_, fname):
@@ -72,8 +70,9 @@ class ContentTypeGrokker(martian.ClassGrokker):
 	    if factory:
 	        warnings.warn(
 		    ("Your Content type has an explicit Factory '%s'."
-		     "At the same time you specified the *nofactory*"
-		     "directive for your Content type '%s'.") %
+		     " At the same time you specified the *nofactory*"
+		     " directive for your Content type '%s'. The"
+                     " factory will be ignored.") %
 		     (factory.__name__, class_.__name__), UserWarning, 2)
             return True
 
