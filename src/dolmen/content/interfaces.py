@@ -41,7 +41,7 @@ class IFactory(zope.component.interfaces.IFactory):
     factory = GlobalClass(
         required = True,
         title = u"Class used as a factory",
-        interface = IBaseContent
+        schema = IBaseContent
         )
 
     addform = TextLine(
