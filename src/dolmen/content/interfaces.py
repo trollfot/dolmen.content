@@ -3,7 +3,7 @@
 import zope.component.interfaces
 from dolmen.field import GlobalClass
 from zope.schema import TextLine
-from zope.interface import Interface, Attribute
+from zope.interface import Attribute
 from zope.annotation.interfaces import IAttributeAnnotatable
 
 

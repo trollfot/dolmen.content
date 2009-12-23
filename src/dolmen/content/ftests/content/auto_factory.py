@@ -44,7 +44,6 @@ We now have a useable factory. We can generate SweetRolls on demand.
 """
 
 import dolmen.content as dolmen
-from zope.interface import Interface
 from zope.schema import List
 
 

@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import martian
-
 from directives import schema
 from interfaces import IFactory
 from zope.i18nmessageid import MessageFactory

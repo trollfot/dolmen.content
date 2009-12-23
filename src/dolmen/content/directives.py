@@ -5,7 +5,7 @@ import martian
 from sys import modules
 from interfaces import IFactory
 from martian.directive import StoreOnce
-from zope.interface import Interface, verify
+from zope.interface import Interface
 
 
 class FileValueStoreOnce(StoreOnce):

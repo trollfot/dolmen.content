@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.3 (unreleased)
+----------------
+
+* Removed zope.app.publisher dependency, use now zope.browserresource.
+
 0.2.2 (2009-09-25)
 ------------------
 

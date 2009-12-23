@@ -13,7 +13,7 @@ class BaseContent(grok.Model):
 
     title = DCProperty('title')
 
-    
+
 class Container(BaseContent, grok.Container):
     """A dolmen folderish content type.
     """

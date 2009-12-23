@@ -16,7 +16,6 @@ even if a factory directive is set on the class.
 """
 
 import dolmen.content as dolmen
-from zope.interface import Interface
 from zope.schema import Bool
 
 

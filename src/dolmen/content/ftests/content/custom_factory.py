@@ -13,7 +13,6 @@ Custom factories
 
 """
 
-import grokcore.component as grok
 import dolmen.content as dolmen
 from zope.interface import Interface, implements
 

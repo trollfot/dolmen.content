@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import base
 import martian
 import warnings
 import dolmen.content
@@ -13,7 +12,7 @@ from grokcore.component.scan import determine_module_component
 from zope import component
 from zope.interface import classImplements, verify, directlyProvides
 from zope.schema.fieldproperty import FieldProperty
-from zope.app.publisher.browser.icon import IconDirective
+from zope.browserresource.metaconfigure import icon as IconDirective
 
 
 class FactoryGrokker(martian.GlobalGrokker):
@@ -27,7 +26,6 @@ class FactoryGrokker(martian.GlobalGrokker):
                                              dolmen.content.IFactory)
         dolmen.content.factory.set(module, context)
         return True
-
 
 
 class ContentTypeGrokker(martian.ClassGrokker):
@@ -67,13 +65,13 @@ class ContentTypeGrokker(martian.ClassGrokker):
             class_.__content_type__ = name
 
         if dolmen.content.nofactory.bind().get(class_):
-	    if factory:
-	        warnings.warn(
-		    ("Your Content type has an explicit Factory '%s'."
-		     " At the same time you specified the *nofactory*"
-		     " directive for your Content type '%s'. The"
+            if factory:
+                warnings.warn(
+                    ("Your Content type has an explicit Factory '%s'."
+                     " At the same time you specified the *nofactory*"
+                     " directive for your Content type '%s'. The"
                      " factory will be ignored.") %
-		     (factory.__name__, class_.__name__), UserWarning, 2)
+                     (factory.__name__, class_.__name__), UserWarning, 2)
             return True
 
         elif factory is None:
@@ -88,8 +86,7 @@ class ContentTypeGrokker(martian.ClassGrokker):
                     "%r is used as a contenttype factory by %r. "
                     "However, the factory name was omitted. Please, "
                     "use the `name` directive to define a factory name."
-                    % (factory, class_), factory
-                    )
+                    % (factory, class_), factory)
             utility = factory(class_)
 
         config.action(
@@ -97,5 +94,5 @@ class ContentTypeGrokker(martian.ClassGrokker):
             callable=component.provideUtility,
             args=(utility, dolmen.content.IFactory, factory_name),
             )
-            
+
         return True
