@@ -46,26 +46,11 @@ and registered, using the package path and class name as an identifier.
   >>> from dolmen.content import IFactory
   >>> from zope.component import getUtility
   >>> myfactory = getUtility(IFactory,
-  ...                        name="dolmen.content.ftests.content.simple.Dummy")
+  ...                        name='dolmen.content.ftests.content.simple.Dummy')
   >>> myfactory.factory
   <class 'dolmen.content.ftests.content.simple.Dummy'>
   >>> myfactory.getSchema()
   [<InterfaceClass dolmen.content.interfaces.IBaseContent>]
-
-
-Icon
-====
-
-A simple dolmen content also permits to specify an icon for your type.
-If you don't explicitly define one, a generic one is used.
-
-  >>> from zope.component import getMultiAdapter
-  >>> from zope.publisher.browser import TestRequest
-  >>> icon_view = getMultiAdapter((mongo, TestRequest()),
-  ...                             name="contenttype_icon")
-  >>> icon_view()
-  '<img src="http://127.0.0.1/@@/dolmen-content-interfaces-IContent-contenttype_icon.png" alt="Content" width="16" height="16" border="0" />'
-
 """
 
 import dolmen.content as dolmen

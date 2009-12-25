@@ -59,8 +59,7 @@ class IFemaleHero(Interface):
     armor = Choice(
         title=u"Armor",
         values=[u'metal bikini', u'leather bikini'],
-        default=u'metal bikini'
-        )
+        default=u'metal bikini')
 
     
 class IBarbarian(Interface):
@@ -68,13 +67,11 @@ class IBarbarian(Interface):
     """
     kills = Int(
         title=u"Kills !",
-        default=100
-        )
+        default=100)
 
     nickname = TextLine(
         title=u"Nickname",
-        default=u"The Barbarian"
-        )
+        default=u"The Barbarian")
 
 
 class Barbarian(dolmen.Content):

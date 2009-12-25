@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import os.path
 import martian
 import warnings
 import dolmen.content
@@ -10,9 +11,17 @@ from grokcore.formlib import formlib
 from grokcore.component.scan import determine_module_component
 
 from zope import component
-from zope.interface import classImplements, verify, directlyProvides
-from zope.schema.fieldproperty import FieldProperty
 from zope.browserresource.metaconfigure import icon as IconDirective
+from zope.interface import classImplements, verify, directlyProvides
+
+
+def define_icon(config, content, icon_path):
+    if os.path.isfile(icon_path):
+        iface = formlib.most_specialized_interfaces(content)
+        IconDirective(config, 'contenttype_icon', iface, file=icon_path)
+        directlyProvides(content, iface)
+        return True
+    return False
 
 
 class FactoryGrokker(martian.GlobalGrokker):
@@ -36,48 +45,46 @@ class ContentTypeGrokker(martian.ClassGrokker):
     martian.directive(grokcore.component.name)
     martian.directive(grokcore.security.require)
 
-    def execute(self, class_, config, schema, icon,
+    def grok(self, name, content, module_info, **kw):
+        content.module_info = module_info
+        return martian.ClassGrokker.grok(
+            self, name, content, module_info, **kw)
+
+    def execute(self, content, config, schema, icon,
                 name, factory, require, **kw):
 
-        formfields = formlib.Fields(*schema)
-        for formfield in formfields:
-            fname = formfield.__name__
-            if not hasattr(class_, fname):
-                setattr(class_, fname, FieldProperty(formfield.field))
-
-        for iface in schema:
-            if not iface.providedBy(class_):
-                classImplements(class_, iface)
-
         # icon providing
-        specialized = formlib.most_specialized_interfaces(class_)
-        IconDirective(config, 'contenttype_icon', specialized[0], file=icon)
-        directlyProvides(class_, specialized[0])
+        if icon is not None:
+            path = content.module_info.getResourcePath(icon)
+            if not define_icon(config, content, path):
+                raise martian.error.GrokError(
+                    "%r, defined on %r, is not a valid icon."
+                    % (path, content), content)
 
-        if getattr(class_, '__content_type__', None) is None:
+        if getattr(content, '__content_type__', None) is None:
             if not name:
-                name = class_.__name__
+                name = content.__name__
                 warnings.warn(
                     ("Content type not provided for '%s'. "
                      "Using %r instead. This prevents the "
                      "internationalization of the type name.") %
-                    (class_, name), UserWarning, 2)
-            class_.__content_type__ = name
+                    (content, name), UserWarning, 2)
+            content.__content_type__ = name
 
-        if dolmen.content.nofactory.bind().get(class_):
+        if dolmen.content.nofactory.bind().get(content):
             if factory:
                 warnings.warn(
                     ("Your Content type has an explicit Factory '%s'."
                      " At the same time you specified the *nofactory*"
                      " directive for your Content type '%s'. The"
                      " factory will be ignored.") %
-                     (factory.__name__, class_.__name__), UserWarning, 2)
+                     (factory.__name__, content.__name__), UserWarning, 2)
             return True
 
         elif factory is None:
-            utility = dolmen.content.Factory(class_)
+            utility = dolmen.content.Factory(content)
             verify.verifyObject(dolmen.content.IFactory, utility, tentative=0)
-            factory_name = '%s.%s' % (class_.__module__, class_.__name__)
+            factory_name = '%s.%s' % (content.__module__, content.__name__)
 
         else:
             factory_name = grokcore.component.name.bind().get(factory)
@@ -86,8 +93,8 @@ class ContentTypeGrokker(martian.ClassGrokker):
                     "%r is used as a contenttype factory by %r. "
                     "However, the factory name was omitted. Please, "
                     "use the `name` directive to define a factory name."
-                    % (factory, class_), factory)
-            utility = factory(class_)
+                    % (factory, content), factory)
+            utility = factory(content)
 
         config.action(
             discriminator=('utility', dolmen.content.IFactory, factory_name),

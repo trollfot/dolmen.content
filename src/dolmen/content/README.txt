@@ -36,6 +36,23 @@ non-exhaustive test::
   ...  dolmen.content.name("a simple content type")
 
 
+Schema
+------
+
+The content can now be instanciated. As we can see here, the object is
+effectively providing the schema, even without grokking::
+
+  >>> MyContent.text
+  <zope.schema.fieldproperty.FieldProperty object at ...>
+
+  >>> IContentSchema.implementedBy(MyContent)
+  True
+
+  >>> obj = MyContent()
+  >>> obj.text
+  u'N/A'
+
+
 Grokking
 --------
 
@@ -58,20 +75,3 @@ instanciate the content easily::
   ...                      name="dolmen.content.MyContent")
   >>> factory
   <dolmen.content.factoring.Factory object at ...>
-
-
-Schema
-------
-
-The content can now be instanciated. As we can see here, the object is
-effectively providing the schema::
-
-  >>> my_content = factory()
-
-  >>> my_content.__content_type__
-  'a simple content type'
-
-  >>> IContentSchema.providedBy(my_content)
-  True
-  >>> my_content.text
-  u'N/A'
