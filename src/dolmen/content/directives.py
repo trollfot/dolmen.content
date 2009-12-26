@@ -3,13 +3,12 @@
 import martian
 
 from dolmen.content.interfaces import IFactory
-from grokcore.formlib import formlib
 
+from zope.formlib.form import Fields
 from zope.interface import classImplements
 from zope.interface.interfaces import IInterface
 from zope.interface.advice import addClassAdvisor
 from zope.schema.fieldproperty import FieldProperty
-
 
 
 def validateSchema(directive, *ifaces):
@@ -17,16 +16,14 @@ def validateSchema(directive, *ifaces):
         if not IInterface.providedBy(iface):
             raise martian.error.GrokImportError(
                 "%s directive can only use interface classes. "
-                "%s is not an interface class. " % (directive.name, iface)
-                )
+                "%s is not an interface class. " % (directive.name, iface))
 
 
 def verifyFactory(directive, factory):
     if factory and not IFactory.implementedBy(factory):
         raise martian.error.GrokImportError(
             "%s directive can only use classes that implement IFactory. "
-            "%s is not a valid factory. " % (directive.name, factory)
-            )
+            "%s is not a valid factory. " % (directive.name, factory))
 
 
 class schema(martian.Directive):
@@ -35,7 +32,7 @@ class schema(martian.Directive):
     validate = validateSchema
 
     def initialize(self, schemas):
-        formfields = formlib.Fields(*schemas)
+        formfields = Fields(*schemas)
         for formfield in formfields:
             fname = formfield.__name__
             if not fname in self.frame.f_locals:

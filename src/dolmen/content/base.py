@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
 import grok
-import interfaces as base
-import directives as config
+from dolmen.content import interfaces
+from dolmen.content.directives import schema
 from zope.dublincore.property import DCProperty
 
 
 class BaseContent(grok.Model):
-    config.icon('generic.png')
-    config.schema(base.IBaseContent)
+    schema(interfaces.IBaseContent)
     grok.baseclass()
 
     title = DCProperty('title')
@@ -18,18 +17,18 @@ class Container(BaseContent, grok.Container):
     """A dolmen folderish content type.
     """
     grok.baseclass()
-    grok.implements(base.IContainer)
+    grok.implements(interfaces.IContainer)
 
 
 class OrderedContainer(BaseContent, grok.OrderedContainer):
     """A dolmen folderish content type with ordered keys.
     """
     grok.baseclass()
-    grok.implements(base.IOrderedContainer)
+    grok.implements(interfaces.IOrderedContainer)
 
 
 class Content(BaseContent):
     """A dolmen content type.
     """
     grok.baseclass()
-    grok.implements(base.IContent)
+    grok.implements(interfaces.IContent)

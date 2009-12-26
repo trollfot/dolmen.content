@@ -1,4 +1,5 @@
-from grok import name, context, require
+from grokcore.component import name, context
+from grokcore.security import require
 
 from dolmen.content.interfaces import *
 from dolmen.content.directives import schema, icon, factory, nofactory

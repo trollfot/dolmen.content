@@ -10,9 +10,9 @@ import grokcore.component
 from grokcore.formlib import formlib
 from grokcore.component.scan import determine_module_component
 
-from zope import component
+from zope.component import provideUtility
 from zope.browserresource.metaconfigure import icon as IconDirective
-from zope.interface import classImplements, verify, directlyProvides
+from zope.interface import verify, directlyProvides
 
 
 def define_icon(config, content, icon_path):
@@ -98,7 +98,7 @@ class ContentTypeGrokker(martian.ClassGrokker):
 
         config.action(
             discriminator=('utility', dolmen.content.IFactory, factory_name),
-            callable=component.provideUtility,
+            callable=provideUtility,
             args=(utility, dolmen.content.IFactory, factory_name),
             )
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from directives import schema
-from interfaces import IFactory
+from dolmen.content.directives import schema
+from dolmen.content.interfaces import IFactory
 from zope.i18nmessageid import MessageFactory
 from zope.schema.fieldproperty import FieldProperty
 from zope.interface import implements, implementedBy

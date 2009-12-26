@@ -7,19 +7,24 @@ readme = open(join('src', 'dolmen', 'content', 'README.txt')).read()
 history = open(join('docs', 'HISTORY.txt')).read()
 
 install_requires = [
-    'setuptools',
-    'grok',
-    'martian',
     'dolmen.field>=0.3',
+    'grok',
+    'grokcore.component',
+    'grokcore.formlib',
+    'grokcore.security',
+    'martian',
+    'setuptools',
+    'zope.annotation',
     'zope.browserresource',
-    'zope.schema',
     'zope.component',
-    'zope.interface',
     'zope.dublincore',
+    'zope.formlib',
     'zope.i18nmessageid',
+    'zope.interface',
+    'zope.schema',
     ]
 
-tests_require = install_requires + [
+tests_require = [
     'zope.testing',
     'zope.app.testing',
     'zope.app.zcmlfiles',
@@ -44,7 +49,6 @@ setup(name = name,
       tests_require = tests_require,
       install_requires = install_requires,
       extras_require = {'test': tests_require},
-      test_suite="dolmen.content",
       classifiers = [
         'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
