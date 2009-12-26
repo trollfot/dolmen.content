@@ -1,8 +1,3 @@
-<configure 
-    xmlns="http://namespaces.zope.org/zope"
-    xmlns:grok="http://namespaces.zope.org/grok">
-
+<configure xmlns="http://namespaces.zope.org/zope">
   <include file="meta.zcml" />
-  <grok:grok package="." />
-
 </configure>

@@ -1,14 +1,34 @@
 # -*- coding: utf-8 -*-
 
+import os.path
 import martian
+from sys import modules
 
 from dolmen.content.interfaces import IFactory
-
+from martian.directive import StoreOnce
 from zope.formlib.form import Fields
 from zope.interface import classImplements
 from zope.interface.interfaces import IInterface
 from zope.interface.advice import addClassAdvisor
 from zope.schema.fieldproperty import FieldProperty
+
+
+class FileValueStoreOnce(StoreOnce):
+
+    def set(self, locals_, directive, value):
+
+        if not os.path.isfile(value):
+            pyfile = modules[locals_['__module__']].__file__
+            value = os.path.join(os.path.dirname(pyfile), value)
+            if not os.path.isfile(value):
+                raise martian.error.GrokImportError(
+                    "Directive %r cannot resolve the file %r." %
+                    (directive.name, value)
+                    )
+        StoreOnce.set(self, locals_, directive, value)
+
+
+FILE_PATH_ONCE = FileValueStoreOnce()
 
 
 def validateSchema(directive, *ifaces):
@@ -53,7 +73,7 @@ def _schema_advice(cls):
 
 class icon(martian.Directive):
     scope = martian.CLASS
-    store = martian.ONCE_NOBASE
+    store = FILE_PATH_ONCE
     validate = martian.validateText
 
 

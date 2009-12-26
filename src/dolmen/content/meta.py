@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import os.path
 import martian
 import warnings
 import dolmen.content
@@ -13,15 +12,6 @@ from grokcore.component.scan import determine_module_component
 from zope.component import provideUtility
 from zope.browserresource.metaconfigure import icon as IconDirective
 from zope.interface import verify, directlyProvides
-
-
-def define_icon(config, content, icon_path):
-    if os.path.isfile(icon_path):
-        iface = formlib.most_specialized_interfaces(content)
-        IconDirective(config, 'contenttype_icon', iface, file=icon_path)
-        directlyProvides(content, iface)
-        return True
-    return False
 
 
 class FactoryGrokker(martian.GlobalGrokker):
@@ -54,12 +44,9 @@ class ContentTypeGrokker(martian.ClassGrokker):
                 name, factory, require, **kw):
 
         # icon providing
-        if icon is not None:
-            path = content.module_info.getResourcePath(icon)
-            if not define_icon(config, content, path):
-                raise martian.error.GrokError(
-                    "%r, defined on %r, is not a valid icon."
-                    % (path, content), content)
+        specialized = formlib.most_specialized_interfaces(content)
+        IconDirective(config, 'contenttype_icon', specialized[0], file=icon)
+        directlyProvides(content, specialized[0])
 
         if getattr(content, '__content_type__', None) is None:
             if not name:
