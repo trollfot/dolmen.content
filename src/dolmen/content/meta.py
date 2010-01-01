@@ -3,13 +3,12 @@
 import martian
 import warnings
 import dolmen.content
-
 import grokcore.security
 import grokcore.component
-from grokcore.component.scan import determine_module_component
 
+from grokcore.component.scan import determine_module_component
 from zope.component import provideUtility
-from zope.interface import verify, directlyProvides
+from zope.interface import verify
 
 
 class FactoryGrokker(martian.GlobalGrokker):
@@ -37,7 +36,6 @@ class ContentTypeGrokker(martian.ClassGrokker):
             self, name, content, module_info, **kw)
 
     def execute(self, content, config, name, factory, require, **kw):
-        
         if getattr(content, '__content_type__', None) is None:
             if not name:
                 name = content.__name__

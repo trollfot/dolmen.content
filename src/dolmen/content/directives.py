@@ -1,11 +1,7 @@
 # -*- coding: utf-8 -*-
 
-import os.path
 import martian
-from sys import modules
-
 from dolmen.content.interfaces import IFactory
-from martian.directive import StoreOnce
 from zope.formlib.form import Fields
 from zope.interface import classImplements
 from zope.interface.interfaces import IInterface
@@ -39,7 +35,6 @@ class schema(martian.Directive):
             fname = formfield.__name__
             if not fname in self.frame.f_locals:
                 self.frame.f_locals[fname] = FieldProperty(formfield.field)
-
 
     def factory(self, *schemas):
         self.initialize(schemas)
