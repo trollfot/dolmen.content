@@ -2,14 +2,13 @@
 
 import grok
 from dolmen.content import interfaces
-from dolmen.content.directives import schema, icon
+from dolmen.content.directives import schema
 from zope.dublincore.property import DCProperty
 
 
 class BaseContent(grok.Model):
-    icon('generic.png')
-    schema(interfaces.IBaseContent)
     grok.baseclass()
+    schema(interfaces.IBaseContent)
 
     title = DCProperty('title')
 
