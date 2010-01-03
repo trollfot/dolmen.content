@@ -58,8 +58,8 @@ Grokking
 
 We now let Grok register our component::
 
-  >>> import grok
-  >>> grok.testing.grok_component('mycontent', MyContent)
+  >>> from grokcore.component import testing
+  >>> testing.grok_component('mycontent', MyContent)
   True
 
 

@@ -20,11 +20,9 @@ class IBaseContent(IAttributeAnnotatable):
         grok.name directive."""
         )
 
-
 class IContent(IBaseContent):
     """Marker interface for contentish dolmen objects.
     """
-
 
 class IContainer(IBaseContent):
     """Marker interface for folderish dolmen objects.
@@ -33,7 +31,6 @@ class IContainer(IBaseContent):
 class IOrderedContainer(IContainer):
     """Marker interface for folderish dolmen objects with ordered keys.
     """
-
 
 class IFactory(zope.component.interfaces.IFactory):
     """A factory for a dolmen content type.

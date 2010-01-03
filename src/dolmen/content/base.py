@@ -1,34 +1,36 @@
 # -*- coding: utf-8 -*-
 
-import grok
 from dolmen.content import interfaces
 from dolmen.content.directives import schema
+from grokcore.component import baseclass
+from grokcore.content import Model, Container, OrderedContainer
 from zope.dublincore.property import DCProperty
+from zope.interface import implements
 
 
-class BaseContent(grok.Model):
-    grok.baseclass()
+class BaseContent(Model):
+    baseclass()
     schema(interfaces.IBaseContent)
 
     title = DCProperty('title')
 
 
-class Container(BaseContent, grok.Container):
+class Container(BaseContent, Container):
     """A dolmen folderish content type.
     """
-    grok.baseclass()
-    grok.implements(interfaces.IContainer)
+    baseclass()
+    implements(interfaces.IContainer)
 
 
-class OrderedContainer(BaseContent, grok.OrderedContainer):
+class OrderedContainer(BaseContent, OrderedContainer):
     """A dolmen folderish content type with ordered keys.
     """
-    grok.baseclass()
-    grok.implements(interfaces.IOrderedContainer)
+    baseclass()
+    implements(interfaces.IOrderedContainer)
 
 
 class Content(BaseContent):
     """A dolmen content type.
     """
-    grok.baseclass()
-    grok.implements(interfaces.IContent)
+    baseclass()
+    implements(interfaces.IContent)
