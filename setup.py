@@ -7,7 +7,7 @@ readme = open(join('src', 'dolmen', 'content', 'README.txt')).read()
 history = open(join('docs', 'HISTORY.txt')).read()
 
 install_requires = [
-    'dolmen.field>=0.3',
+    'dolmen.field >= 0.3',
     'grokcore.content',
     'grokcore.component',
     'grokcore.security',
@@ -31,7 +31,7 @@ tests_require = [
 
 setup(name = name,
       version = version,
-      description = 'Dolmen content-type framework',
+      description = 'Dolmen content type framework',
       long_description = readme + '\n\n' + history,
       keywords = 'Grok Zope3 CMS Dolmen Content',
       author = 'Souheil Chelfouh',
@@ -49,7 +49,6 @@ setup(name = name,
       install_requires = install_requires,
       extras_require = {'test': tests_require},
       classifiers = [
-        'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
         'Framework :: Zope3',
         'Intended Audience :: Other Audience',
