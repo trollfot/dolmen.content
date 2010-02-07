@@ -108,6 +108,19 @@ instanciate the content easily::
   >>> factory
   <dolmen.content.factoring.Factory object at ...>
 
+The factory will create your content type for you, when called::
+
+  >>> obj = factory()
+  >>> obj
+  <dolmen.content.MyContent object at ...>
+  >>> obj.text
+  u'N/A'
+
+  >>> obj = factory(text=u"This is as easy as it seems.")
+  >>> obj
+  <dolmen.content.MyContent object at ...>
+  >>> obj.text
+  u'This is as easy as it seems.'
 
 Security
 --------
