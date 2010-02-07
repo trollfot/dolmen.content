@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from dolmen.content import interfaces
+from dolmen.content import interfaces, require
 from dolmen.content.directives import schema
 from grokcore.component import baseclass
 from grokcore.content import Model, Container, OrderedContainer
@@ -11,6 +11,7 @@ from zope.interface import implements
 class BaseContent(Model):
     baseclass()
     schema(interfaces.IBaseContent)
+    require("zope.ManageContent")
 
     title = DCProperty('title')
 

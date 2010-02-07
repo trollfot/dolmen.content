@@ -4,6 +4,10 @@ Changelog
 0.3 (unreleased)
 ----------------
 
+* The `BaseContent` now sets a default `require` value at
+  `zope.ManageContent`. This permission is _NOT_ used, it's just a
+  convenient directive to implement your own security check.
+
 * Dependencies have been cut down. `zope.app` packages are no longer
   used. The tests module has been rewritten for a cleaner and clearer
   read.

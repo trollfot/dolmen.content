@@ -3,19 +3,26 @@ dolmen.content
 ==============
 
 The package `dolmen.content` is a convenient way to define content
-types. Content types usually have several attributes : a type, a
-schema, an icon. In addition, they need security to control the
-creation, pages to edit them, easy ways to control the display, and
-the widgets. This is what provides `dolmen.content`, with an
-easy-to-use set of grok directives.
+types.
+
+.. contents::
+
+About
+=====
+
+Content types usually have several attributes defined in a
+schema and a name. In addition, they often need security to control the
+creation or the modification (update, deletion, etc.). This is what
+provides `dolmen.content`, with an easy-to-use set of grok directives.
 
 Example
 =======
 
 A `dolmen.content` content is declared as a simple class. Some
-directives are available to define your content: `name`, `icon`,
-`schema` and `factory`. To have detailed information about these
-directives, please have a look at the package tests.
+directives are available to define your content: `name`, `schema` and
+`factory`. To have detailed information about these directives, please
+have a look at the package tests.
+
 
 Defining the content
 --------------------
@@ -52,15 +59,34 @@ effectively providing the schema, even without grokking::
   >>> obj.text
   u'N/A'
 
+Even though the schema has been applied and the content type
+boostrapped, the content type is not yet complete::
+
+  >>> obj.__content_type__
+  Traceback (most recent call last):
+  ...
+  AttributeError: 'MyContent' object has no attribute '__content_type__'
+
+To get all the features of a `dolmen.content` Content, we need to
+register our component : we need to grok it.
+
 
 Grokking
 --------
 
-We now let Grok register our component::
+We register our component::
 
   >>> from grokcore.component import testing
   >>> testing.grok_component('mycontent', MyContent)
   True
+
+An additional information is now available::
+
+  >>> obj.__content_type__
+  'a simple content type'
+
+The grokking process also allowed an automatic registration of a very
+convenient factory as an utility.
 
 
 Factory
@@ -75,3 +101,21 @@ instanciate the content easily::
   ...                      name="dolmen.content.MyContent")
   >>> factory
   <dolmen.content.factoring.Factory object at ...>
+
+
+Security
+--------
+
+The created content type has a basic security declaration. We can
+retrieve the value of the permission protecting the content type by
+using the `require` directive::
+
+  >>> dolmen.content.require.bind().get(obj)
+  'zope.ManageContent'
+
+Please note that this security declaration is _not_ used anywhere in
+`dolmen.content`. It's provided as a convenient way to declare a
+permission at the content type level. The factory does not check this
+permission. If you need a permission checker at the factory level,
+please provide your own factory : see the tests module, factory
+folder, for examples.
