@@ -59,6 +59,12 @@ effectively providing the schema, even without grokking::
   >>> obj.text
   u'N/A'
 
+The content can also be instanciated providing initial values::
+
+  >>> obj = MyContent(text=u"This is a nice text !")
+  >>> obj.text
+  u'This is a nice text !'
+
 Even though the schema has been applied and the content type
 boostrapped, the content type is not yet complete::
 
