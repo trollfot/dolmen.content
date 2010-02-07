@@ -4,7 +4,17 @@ Changelog
 0.3 (unreleased)
 ----------------
 
-* Removed zope.app.publisher dependency, use now zope.browserresource.
+* Dependencies have been cut down. `zope.app` packages are no longer
+  used. The tests module has been rewritten for a cleaner and clearer
+  read.
+
+* Directive `icon` has been removed. The functionality will be
+  implemented in a standalone package.
+
+* Directive `schema` now works without grokking, using a
+  `zope.interface` class advisor. This allows a flexible
+  bootstrapping, even in non-grokked code.
+
 
 0.2.2 (2009-09-25)
 ------------------

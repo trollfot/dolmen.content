@@ -25,7 +25,7 @@ attributes defined in the IBarbarian interface, set by default.
 
 import dolmen.content as dolmen
 from zope.interface import Interface
-from zope.schema import TextLine, Int, Choice
+from zope.schema import TextLine, Int
 
     
 class IBarbarian(Interface):

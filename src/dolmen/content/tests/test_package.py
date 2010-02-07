@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import unittest
-import dolmen.content
 import pkg_resources
-import os.path
 from dolmen.content import tests
 from zope.testing import doctest
 

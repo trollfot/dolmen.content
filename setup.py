@@ -25,7 +25,6 @@ install_requires = [
 tests_require = [
     'zope.container',
     'zope.security',
-    'zope.securitypolicy',
     'zope.site',
     'zope.testing',
     'zope.traversing',
