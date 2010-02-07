@@ -21,12 +21,12 @@ Therefore, the link between the two will be done automatically :
   >>> factory.description
   u'Sweet rolls baker since 1884'
   >>> factory.getSchema()
-  [<InterfaceClass dolmen.content.ftests.content.auto_factory.ICake>]
+  [<InterfaceClass dolmen.content.tests.factory.auto_factory.ICake>]
 
 If binded automatically, the generic factory is not registered.
 
   >>> auto_factory = queryUtility(dolmen.IFactory,
-  ...                'dolmen.content.ftests.content.auto_factory.SweetRoll')
+  ...                'dolmen.content.tests.factory.auto_factory.SweetRoll')
   >>> auto_factory is None
   True
 

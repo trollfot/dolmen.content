@@ -1,4 +1,7 @@
 """
+To Grok or not to grok
+======================
+
 The use of the `schema` directive works without any grokking.
 A simple example :
 
@@ -21,4 +24,5 @@ A simple example :
   u'Boo'
   >>> obj.number
   1
+  
 """

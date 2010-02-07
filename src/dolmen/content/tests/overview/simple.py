@@ -27,7 +27,8 @@ Of course, the basic fields validations are respected.
   >>> mongo.title = 'a vast bowl of pus'
   Traceback (most recent call last):
   ...
-  WrongType: ('a vast bowl of pus', <type 'unicode'>)
+  WrongType: ('a vast bowl of pus', <type 'unicode'>, 'title')
+  
   >>> mongo.title = u'Oh... it makes me mad... mad!'
   >>> mongo.title
   u'Oh... it makes me mad... mad!'
@@ -46,9 +47,9 @@ and registered, using the package path and class name as an identifier.
   >>> from dolmen.content import IFactory
   >>> from zope.component import getUtility
   >>> myfactory = getUtility(IFactory,
-  ...                        name='dolmen.content.ftests.content.simple.Dummy')
+  ...                        name='dolmen.content.tests.overview.simple.Dummy')
   >>> myfactory.factory
-  <class 'dolmen.content.ftests.content.simple.Dummy'>
+  <class 'dolmen.content.tests.overview.simple.Dummy'>
   >>> myfactory.getSchema()
   [<InterfaceClass dolmen.content.interfaces.IBaseContent>]
 """

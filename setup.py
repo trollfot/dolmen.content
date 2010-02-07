@@ -8,8 +8,8 @@ history = open(join('docs', 'HISTORY.txt')).read()
 
 install_requires = [
     'dolmen.field >= 0.3',
-    'grokcore.content',
     'grokcore.component',
+    'grokcore.content',
     'grokcore.security',
     'martian',
     'setuptools',
@@ -23,10 +23,12 @@ install_requires = [
     ]
 
 tests_require = [
+    'zope.container',
+    'zope.security',
+    'zope.securitypolicy',
+    'zope.site',
     'zope.testing',
-    'zope.app.component',
-    'zope.app.publisher',
-    'zope.app.testing',
+    'zope.traversing',
     ]
 
 setup(name = name,
