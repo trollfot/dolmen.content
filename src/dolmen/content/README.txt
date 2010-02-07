@@ -66,7 +66,7 @@ We now let Grok register our component::
 Factory
 -------
 
-When the content is registered, a factory is registered, using the
+When the content is grokked, a factory is registered, using the
 full module and class dotted names. It allows us to query and
 instanciate the content easily::
 

@@ -34,6 +34,11 @@ def suiteFromPackage(name):
 
 def test_suite():
     suite = unittest.TestSuite()
+    readme = doctest.DocFileSuite(
+        '../README.txt', globs={'__name__': 'dolmen.content'},
+        optionflags=(doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS))
+    readme.layer = tests.DolmenContentLayer(tests)
+    suite.addTest(readme)
     for name in ['overview', 'schema', 'factory']:
         suite.addTest(suiteFromPackage(name))
     return suite
