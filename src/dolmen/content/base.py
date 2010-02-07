@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from zope.formlib.form import Fields
 from dolmen.content import interfaces, require
 from dolmen.content.directives import schema
 from grokcore.component import baseclass
@@ -15,12 +16,29 @@ class BaseContent(Model):
 
     title = DCProperty('title')
 
+    def __init__(self, **kwargs):
+        Model.__init__(self)
+        if kwargs:
+            schemas = schema.bind().get(self)
+            ifields = Fields(*schemas)
+            for key, value in kwargs.items():
+                ifield = ifields.get(key)
+                if ifield is None:
+                    continue
+                field = ifield.field.bind(self)
+                field.validate(value)
+                field.set(self, value)
+        
 
 class Container(BaseContent, Container):
     """A dolmen folderish content type.
     """
     baseclass()
     implements(interfaces.IContainer)
+
+    def __init__(self, **kwargs):
+        Container.__init__(self)
+        BaseContent.__init__(self, **kwargs)
 
 
 class OrderedContainer(BaseContent, OrderedContainer):
@@ -29,6 +47,10 @@ class OrderedContainer(BaseContent, OrderedContainer):
     baseclass()
     implements(interfaces.IOrderedContainer)
 
+    def __init__(self, **kwargs):
+        OrderedContainer.__init__(self)
+        BaseContent.__init__(self, **kwargs)
+        
 
 class Content(BaseContent):
     """A dolmen content type.
