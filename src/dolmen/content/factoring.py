@@ -23,11 +23,11 @@ class Factory(object):
 
     def getSchema(self):
         return schema.bind().get(self.factory)
-        
+
     @property
     def title(self):
         return _(u"add_action", default=u"Add: ${name}",
-                 mapping = {'name': self.factory.__content_type__})
-                                   
+                 mapping={'name': self.factory.__content_type__})
+
     def __call__(self, *args, **kw):
         return self.factory(*args, **kw)

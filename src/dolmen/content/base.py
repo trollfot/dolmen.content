@@ -28,7 +28,7 @@ class BaseContent(Model):
                 field = ifield.field.bind(self)
                 field.validate(value)
                 field.set(self, value)
-        
+
 
 class Container(BaseContent, Container):
     """A dolmen folderish content type.
@@ -50,7 +50,7 @@ class OrderedContainer(BaseContent, OrderedContainer):
     def __init__(self, **kwargs):
         OrderedContainer.__init__(self)
         BaseContent.__init__(self, **kwargs)
-        
+
 
 class Content(BaseContent):
     """A dolmen content type.
