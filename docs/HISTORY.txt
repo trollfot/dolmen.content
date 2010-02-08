@@ -1,8 +1,11 @@
 Changelog
 =========
 
-0.3 (unreleased)
+0.3 (2010-02-08)
 ----------------
+
+* Using the new `grokcore.content` package, allowing to cut the `grok`
+  dependency.
 
 * The `BaseContent` now sets a default `require` value at
   `zope.ManageContent`. This permission is _NOT_ used, it's just a
@@ -13,7 +16,8 @@ Changelog
   read.
 
 * Directive `icon` has been removed. The functionality will be
-  implemented in a standalone package.
+  implemented in a standalone package. ATTENTION, this might break
+  your existing code !
 
 * Directive `schema` now works without grokking, using a
   `zope.interface` class advisor. This allows a flexible
