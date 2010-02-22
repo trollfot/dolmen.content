@@ -1,10 +1,13 @@
 Changelog
 =========
 
-0.4 (unreleased)
-----------------
+0.3.1 (2010-02-22)
+------------------
 
-* ...
+* Corrected a very important bug in the models instanciation. The
+  simple instanciation was causing an infinite loop due to imports
+  having the same name than the module classes. This is fixed and tests
+  have been added to test this simple case and avoid regression.
 
 
 0.3 (2010-02-08)
