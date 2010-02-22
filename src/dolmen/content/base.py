@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 
+import grokcore.content
 from zope.formlib.form import Fields
 from dolmen.content import interfaces, require
 from dolmen.content.directives import schema
 from grokcore.component import baseclass
-from grokcore.content import Model, Container, OrderedContainer
 from zope.dublincore.property import DCProperty
 from zope.interface import implements
 
 
-class BaseContent(Model):
+class BaseContent(grokcore.content.Model):
     baseclass()
     schema(interfaces.IBaseContent)
     require("zope.ManageContent")
@@ -17,7 +17,7 @@ class BaseContent(Model):
     title = DCProperty('title')
 
     def __init__(self, **kwargs):
-        Model.__init__(self)
+        grokcore.content.Model.__init__(self)
         if kwargs:
             schemas = schema.bind().get(self)
             ifields = Fields(*schemas)
@@ -30,25 +30,25 @@ class BaseContent(Model):
                 field.set(self, value)
 
 
-class Container(BaseContent, Container):
+class Container(BaseContent, grokcore.content.Container):
     """A dolmen folderish content type.
     """
     baseclass()
     implements(interfaces.IContainer)
 
     def __init__(self, **kwargs):
-        Container.__init__(self)
+        grokcore.content.Container.__init__(self)
         BaseContent.__init__(self, **kwargs)
 
 
-class OrderedContainer(BaseContent, OrderedContainer):
+class OrderedContainer(BaseContent, grokcore.content.OrderedContainer):
     """A dolmen folderish content type with ordered keys.
     """
     baseclass()
     implements(interfaces.IOrderedContainer)
 
     def __init__(self, **kwargs):
-        OrderedContainer.__init__(self)
+        grokcore.content.OrderedContainer.__init__(self)
         BaseContent.__init__(self, **kwargs)
 
 
