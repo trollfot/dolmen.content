@@ -39,11 +39,6 @@ class ContentTypeGrokker(martian.ClassGrokker):
         if getattr(content, '__content_type__', None) is None:
             if not name:
                 name = content.__name__
-                warnings.warn(
-                    ("Content type not provided for '%s'. "
-                     "Using %r instead. This prevents the "
-                     "internationalization of the type name.") %
-                    (content, name), UserWarning, 2)
             content.__content_type__ = name
 
         if dolmen.content.nofactory.bind().get(content):
