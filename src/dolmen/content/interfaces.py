@@ -41,20 +41,27 @@ class IFactory(zope.component.interfaces.IFactory):
     factory = GlobalClass(
         required=True,
         title=u"Class used as a factory",
-        schema=IBaseContent,
-        )
+        schema=IBaseContent)
 
     addform = TextLine(
         required=True,
         title=u"Name of the add form",
-        default=u"dolmen.add",
-        )
+        default=u"dolmen.add")
+
+    name = TextLine(
+        required=True,
+        title=u"Name of the factored content",
+        default=u"")
+
+    title = TextLine(
+        required=True,
+        title=u"Title of the factored content",
+        default=u"")
 
     description = TextLine(
         required=True,
-        title=u"Description of the added content",
-        default=u"",
-        )
+        title=u"Description of the factored content",
+        default=u"")
 
     def getSchema():
         """Returns a list of interfaces representing the schema

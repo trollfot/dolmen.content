@@ -2,10 +2,20 @@
 Custom factories
 ================
 
+Explicitly linked factories are registered normally::
+
   >>> from zope.component import getUtility, queryUtility
   >>> joe = getUtility(dolmen.IFactory, 'baker_joe')
   >>> isinstance(joe, BakerJoe)
   True
+
+  >>> joe.title
+  u"Joe's bakery"
+  >>> joe.description
+  u'I am a totally custom factory.'
+
+Factories that are not linked with the `factory` directive or by
+natural association are disregarded::
 
   >>> steve = queryUtility(dolmen.IFactory, 'baker_steve')
   >>> steve is None
@@ -24,6 +34,7 @@ class IBread(Interface):
 class BakerJoe(dolmen.Factory):
     dolmen.name('baker_joe')
     title = u"Joe's bakery"
+    description = u"I am a totally custom factory."
 
 
 class BakerSteve(dolmen.Factory):

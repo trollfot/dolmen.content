@@ -1,19 +1,17 @@
 # -*- coding: utf-8 -*-
 
-from dolmen.content.directives import schema
+from dolmen.content import schema, name, title, description
 from dolmen.content.interfaces import IFactory
-from zope.i18nmessageid import MessageFactory
 from zope.schema.fieldproperty import FieldProperty
 from zope.interface import implements, implementedBy
 
-_ = MessageFactory("dolmen")
-
 
 class Factory(object):
+    """A content type generic factory.
+    """
     implements(IFactory)
 
     addform = FieldProperty(IFactory['addform'])
-    description = FieldProperty(IFactory['description'])
 
     def __init__(self, factory):
         self.factory = factory
@@ -25,9 +23,19 @@ class Factory(object):
         return schema.bind().get(self.factory)
 
     @property
+    def name(self):
+        """This, by default, returns the `name\ directive value,
+        that is used as __content_type__.
+        """
+        return name.bind().get(self.factory)
+
+    @property
     def title(self):
-        return _(u"add_action", default=u"Add: ${name}",
-                 mapping={'name': self.factory.__content_type__})
+        return title.bind().get(self.factory)
+
+    @property
+    def description(self):
+        return description.bind().get(self.factory)
 
     def __call__(self, *args, **kw):
         return self.factory(*args, **kw)

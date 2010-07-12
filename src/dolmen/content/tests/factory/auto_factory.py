@@ -41,6 +41,7 @@ We now have a useable factory. We can generate SweetRolls on demand.
   u'Joes rolled delicacies'
   >>> cake.ingredients
   ['strawberry jam', 'flour', 'eggs']
+  
 """
 
 import dolmen.content as dolmen
@@ -51,17 +52,16 @@ class ICake(dolmen.IBaseContent):
     """A sweet eatable object.
     """
     ingredients = List(
-        title = u"The ingredients needed to bake the cake.",
-        required = True,
-        default = []
-        )
+        title=u"The ingredients needed to bake the cake.",
+        required=True,
+        default=[])
 
 
 class SweetRoll(dolmen.Content):
     """A rolled cake with strawberry jam in it.
     """
-    dolmen.name(u'Joes rolled delicacies')
     dolmen.schema(ICake)
+    dolmen.name(u'Joes rolled delicacies')
     ingredients = ['strawberry jam', 'flour', 'eggs']
 
 

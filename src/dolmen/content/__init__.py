@@ -1,4 +1,6 @@
-from grokcore.component import name, context
+# -*- coding: utf-8 -*-
+
+from grokcore.component import name, title, description
 from grokcore.security import require
 
 from dolmen.content.interfaces import *

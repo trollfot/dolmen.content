@@ -48,15 +48,38 @@ and registered, using the package path and class name as an identifier.
   >>> from zope.component import getUtility
   >>> myfactory = getUtility(IFactory,
   ...                        name='dolmen.content.tests.overview.simple.Dummy')
+
   >>> myfactory.factory
   <class 'dolmen.content.tests.overview.simple.Dummy'>
+
   >>> myfactory.getSchema()
   [<InterfaceClass dolmen.content.interfaces.IBaseContent>]
+
+The factory describes the generated content::
+
+  >>> myfactory.name
+  'DummyContent'
+
+  >>> myfactory.title
+  'A Dummy content'
+
+  >>> myfactory.description
+  'A very dumb and dull content.'
+
+Finally, the factory provides the name of the view serving as an add
+form to add the content through the web::
+
+  >>> myfactory.addform
+  u'dolmen.add'
+
 """
 
 import dolmen.content as dolmen
+
 
 class Dummy(dolmen.Content):
     """A very simple content
     """
     dolmen.name('DummyContent')
+    dolmen.title('A Dummy content')
+    dolmen.description('A very dumb and dull content.')
