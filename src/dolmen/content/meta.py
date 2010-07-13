@@ -27,7 +27,8 @@ class FactoryGrokker(martian.GlobalGrokker):
 class ContentTypeGrokker(martian.ClassGrokker):
     martian.component(dolmen.content.BaseContent)
     martian.directive(dolmen.content.factory)
-    martian.directive(grokcore.component.name)
+    martian.directive(grokcore.component.name,
+                      get_default=dolmen.content.factoring.default_name)
     martian.directive(grokcore.security.require)
 
     def grok(self, name, content, module_info, **kw):
@@ -36,10 +37,8 @@ class ContentTypeGrokker(martian.ClassGrokker):
             self, name, content, module_info, **kw)
 
     def execute(self, content, config, name, factory, require, **kw):
-        if getattr(content, '__content_type__', None) is None:
-            if not name:
-                name = content.__name__
-            content.__content_type__ = name
+
+        content.__content_type__ = name
 
         if dolmen.content.nofactory.bind().get(content):
             if factory:

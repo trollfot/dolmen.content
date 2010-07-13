@@ -72,6 +72,31 @@ form to add the content through the web::
   >>> myfactory.addform
   u'dolmen.add'
 
+  >>> from zope.interface.verify import verifyObject
+  >>> verifyObject(IFactory, myfactory)
+  True
+
+Content type with no directives
+-------------------------------
+
+  >>> infoless = getUtility(IFactory,
+  ...              name='dolmen.content.tests.overview.simple.InfoLess')
+
+  >>> infoless.name
+  'InfoLess'
+
+  >>> infoless.description
+  u''
+
+  >>> infoless.title
+  u''
+
+  >>> infoless.addform
+  u'dolmen.add'
+
+  >>> verifyObject(IFactory, infoless)
+  True
+  
 """
 
 import dolmen.content as dolmen
@@ -83,3 +108,7 @@ class Dummy(dolmen.Content):
     dolmen.name('DummyContent')
     dolmen.title('A Dummy content')
     dolmen.description('A very dumb and dull content.')
+
+
+class InfoLess(dolmen.Content):
+    pass

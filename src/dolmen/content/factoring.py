@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from dolmen.content import schema, name, title, description
+from dolmen.content import schema, name, title, description, get_content_type
 from dolmen.content.interfaces import IFactory
 from zope.schema.fieldproperty import FieldProperty
 from zope.interface import implements, implementedBy
+
+
+def default_name(component, module=None, **data):
+    return component.__name__
 
 
 class Factory(object):
@@ -24,18 +28,15 @@ class Factory(object):
 
     @property
     def name(self):
-        """This, by default, returns the `name\ directive value,
-        that is used as __content_type__.
-        """
-        return name.bind().get(self.factory)
+        return name.bind(get_default=default_name).get(self.factory)
 
     @property
     def title(self):
-        return title.bind().get(self.factory)
+        return title.bind(default=u"").get(self.factory)
 
     @property
     def description(self):
-        return description.bind().get(self.factory)
+        return description.bind(default=u"").get(self.factory)
 
     def __call__(self, *args, **kw):
         return self.factory(*args, **kw)
