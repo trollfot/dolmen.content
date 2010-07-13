@@ -2,18 +2,20 @@
 
 import zope.component.interfaces
 from dolmen.field import GlobalClass
-from zope.schema import TextLine
-from zope.interface import Attribute
 from zope.annotation.interfaces import IAttributeAnnotatable
+from zope.i18nmessageid import MessageFactory
+from zope.interface import Attribute
+from zope.schema import TextLine
+
+_ = MessageFactory('zope')
 
 
 class IBaseContent(IAttributeAnnotatable):
     """Marker interface for dolmen base content.
     """
     title = TextLine(
-        title=u"Title",
-        required=True,
-        )
+        title=_(u"Title"),
+        required=True)
 
     __content_type__ = Attribute(
         """Type of the object. Usually set by the grokker, using the
