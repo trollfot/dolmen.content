@@ -49,7 +49,7 @@ class IFactory(zope.component.interfaces.IFactory):
         default=u"dolmen.add")
 
     name = TextLine(
-        required=False,
+        required=True,
         title=u"Name of the factored content",
         default=u"")
 

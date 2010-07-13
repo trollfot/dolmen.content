@@ -1,6 +1,24 @@
 Changelog
 =========
 
+0.5 (2010-07-13)
+----------------
+
+* Default factory now provides a valid `IFactory`
+  implementation. Added tests to fix that.
+
+* Changed the policy of the `__content_type__` attribute
+  computation. Tests have been added to prevent any changes and
+  regression.
+
+* Added an util function to fetch the content type of an object or
+  class.
+
+* The `IFactory` interface now allows empty `title` and `description`,
+  in accordance with the base value of the generic factory and
+  directives.
+
+
 0.4 (2010-07-13)
 ----------------
 
