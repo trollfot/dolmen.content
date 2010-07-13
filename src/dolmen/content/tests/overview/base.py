@@ -33,13 +33,12 @@ We now instanciate them with and without arguments::
   >>> gunther = Mammoth()
   >>> gunther
   <dolmen.content.tests.overview.base.Mammoth object at ...>
-  
+
   >>> manfred = Mammoth(title=u'Manfred the Impetuous')
   >>> manfred
   <dolmen.content.tests.overview.base.Mammoth object at ...>
   >>> manfred.title
   u'Manfred the Impetuous'
-
 
   >>> grotto = Cave()
   >>> grotto
@@ -49,7 +48,6 @@ We now instanciate them with and without arguments::
   >>> icecave.title
   u'An icy cave'
 
-
   >>> quiver = HunterQuiver()
   >>> quiver
   <dolmen.content.tests.overview.base.HunterQuiver object at ...>
@@ -57,5 +55,5 @@ We now instanciate them with and without arguments::
   >>> grokquiver = HunterQuiver(title=u'A mammoth hunter quiver')
   >>> grokquiver.title
   u'A mammoth hunter quiver'
-  
+
 """

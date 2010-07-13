@@ -9,7 +9,7 @@ from zope.testing import doctest
 def make_test(dottedname):
     test = doctest.DocTestSuite(
         dottedname, setUp=tests.siteSetUp, tearDown=tests.siteTearDown,
-        optionflags=doctest.ELLIPSIS+doctest.NORMALIZE_WHITESPACE)
+        optionflags=doctest.ELLIPSIS + doctest.NORMALIZE_WHITESPACE)
     test.layer = tests.DolmenContentLayer(tests)
     return test
 
@@ -34,7 +34,7 @@ def test_suite():
     suite = unittest.TestSuite()
     readme = doctest.DocFileSuite(
         '../README.txt', globs={'__name__': 'dolmen.content'},
-        optionflags=(doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS))
+        optionflags=(doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS))
     readme.layer = tests.DolmenContentLayer(tests)
     suite.addTest(readme)
     for name in ['overview', 'schema', 'factory']:

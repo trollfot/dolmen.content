@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from dolmen.content import schema, name, title, description, get_content_type
+from dolmen.content import schema, name, title, description
 from dolmen.content.interfaces import IFactory
 from zope.schema.fieldproperty import FieldProperty
 from zope.interface import implements, implementedBy

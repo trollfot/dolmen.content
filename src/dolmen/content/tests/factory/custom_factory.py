@@ -41,7 +41,7 @@ class BakerSteve(dolmen.Factory):
     dolmen.name('baker_steve')
     title = u"Steve and Sons."
 
-    
+
 class Baguette(dolmen.Content):
     """A crusty bread.
     """

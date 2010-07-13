@@ -23,9 +23,8 @@ class ISomethingThatShouldntBe(dolmen.IBaseContent):
     """A cyclopean, undescriptable and non euclidean horror.
     """
     sanity_failure = Bool(
-        title = u"Seeing this makes you unsane.",
-        default = True
-        )
+        title=u"Seeing this makes you unsane.",
+        default=True)
 
 
 class SunkenTemple(dolmen.Factory):

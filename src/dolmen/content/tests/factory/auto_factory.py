@@ -31,17 +31,20 @@ If binded automatically, the generic factory is not registered.
   True
 
 We now have a useable factory. We can generate SweetRolls on demand.
-  
+
   >>> cake = factory()
   >>> ICake.providedBy(cake)
   True
+
   >>> isinstance(cake, SweetRoll)
   True
+
   >>> cake.__content_type__
   u'Joes rolled delicacies'
+
   >>> cake.ingredients
   ['strawberry jam', 'flour', 'eggs']
-  
+
 """
 
 import dolmen.content as dolmen

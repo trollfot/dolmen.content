@@ -7,7 +7,7 @@ A dolmen.content Content only needs a name to be fully useable.
   >>> mongo = Dummy()
   >>> mongo.__content_type__
   'DummyContent'
-  
+
   >>> from grokcore.component.interfaces import IContext
   >>> IContext.providedBy(mongo)
   True
@@ -28,7 +28,7 @@ Of course, the basic fields validations are respected.
   Traceback (most recent call last):
   ...
   WrongType: ('a vast bowl of pus', <type 'unicode'>, 'title')
-  
+
   >>> mongo.title = u'Oh... it makes me mad... mad!'
   >>> mongo.title
   u'Oh... it makes me mad... mad!'
@@ -96,7 +96,7 @@ Content type with no directives
 
   >>> verifyObject(IFactory, infoless)
   True
-  
+
 """
 
 import dolmen.content as dolmen

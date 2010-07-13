@@ -15,7 +15,7 @@ from zope.traversing.testing import setUp
 def siteSetUp(test):
 
     zope.component.hooks.setHooks()
-    
+
     # Set up site manager adapter
     zope.component.provideAdapter(
         SiteManagerAdapter, (Interface,), IComponentLookup)

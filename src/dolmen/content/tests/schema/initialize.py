@@ -57,5 +57,3 @@ class IThane(dolmen.content.IBaseContent):
 
 class Thane(dolmen.content.Content):
     dolmen.content.schema(IThane)
-
-    
