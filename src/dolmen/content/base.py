@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import grokcore.content
-from zope.formlib.form import Fields
 from dolmen.content import interfaces, require
-from dolmen.content.directives import schema
+from dolmen.content.directives import schema, Fields
 from grokcore.component import baseclass
 from zope.dublincore.property import DCProperty
 from zope.interface import implements
@@ -25,7 +24,7 @@ class BaseContent(grokcore.content.Model):
                 ifield = ifields.get(key)
                 if ifield is None:
                     continue
-                field = ifield.field.bind(self)
+                field = ifield.bind(self)
                 field.validate(value)
                 field.set(self, value)
 

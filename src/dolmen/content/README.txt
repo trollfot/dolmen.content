@@ -89,7 +89,7 @@ We register our component::
 An additional information is now available::
 
   >>> obj.__content_type__
-  'a simple content type'
+  u'a simple content type'
 
 The grokking process also allowed an automatic registration of a very
 convenient factory as an utility.

@@ -6,7 +6,7 @@ A dolmen.content Content only needs a name to be fully useable.
 
   >>> mongo = Dummy()
   >>> mongo.__content_type__
-  'DummyContent'
+  u'DummyContent'
 
   >>> from grokcore.component.interfaces import IContext
   >>> IContext.providedBy(mongo)

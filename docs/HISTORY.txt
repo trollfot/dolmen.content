@@ -1,6 +1,18 @@
 Changelog
 =========
 
+0.6 (2010-11-06)
+----------------
+
+* Cleaned up dependencies. ``zope.formlib`` is no longer used.
+
+* The code has been updated to work with the latest ``martian`` and
+  ``grokcore.component``.
+
+* The `__content_type__` property is now a unicode string. This will
+  convert the given name to unicode or die trying.
+
+
 0.5.1 (2010-07-13)
 ------------------
 

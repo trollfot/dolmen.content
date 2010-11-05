@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import unittest
+import doctest
 import pkg_resources
 from dolmen.content import tests
-from zope.testing import doctest
 
 
 def make_test(dottedname):

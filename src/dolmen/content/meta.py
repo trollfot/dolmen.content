@@ -5,8 +5,7 @@ import warnings
 import dolmen.content
 import grokcore.security
 import grokcore.component
-
-from grokcore.component.scan import determine_module_component
+from martian.util import scan_for_classes
 from zope.component import provideUtility
 from zope.interface import verify
 
@@ -16,11 +15,20 @@ class FactoryGrokker(martian.GlobalGrokker):
     """
     martian.priority(1002)
 
+    def get_default(cls, component, module=None, **data):
+        components = list(scan_for_classes(module, dolmen.content.IFactory))
+        if len(components) == 0:
+            return None
+        elif len(components) == 1:
+            component = components[0]
+        else:
+            return None
+        return component
+
     def grok(self, name, module, module_info, config, **kw):
-        context = determine_module_component(module_info,
-                                             dolmen.content.factory,
-                                             dolmen.content.IFactory)
-        dolmen.content.factory.set(module, context)
+        factory = self.get_default(module, module)
+        if factory is not None:
+            dolmen.content.factory.set(module, factory)
         return True
 
 
@@ -37,6 +45,14 @@ class ContentTypeGrokker(martian.ClassGrokker):
             self, name, content, module_info, **kw)
 
     def execute(self, content, config, name, factory, require, **kw):
+
+        if not isinstance(name, unicode):
+            try:
+                name = unicode(name)
+            except:
+                raise martian.error.GrokError(
+                    "%r is not a unicode value. Content `name`"
+                    " should be a unicode string." % name)
 
         content.__content_type__ = name
 
