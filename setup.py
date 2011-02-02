@@ -23,7 +23,6 @@ install_requires = [
 
 tests_require = [
     'zope.container',
-    'zope.security',
     'zope.site',
     'zope.traversing',
     'zope.location',

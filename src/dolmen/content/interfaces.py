@@ -6,7 +6,6 @@ from zope.annotation.interfaces import IAttributeAnnotatable
 from zope.i18nmessageid import MessageFactory
 from zope.interface import Attribute
 from zope.schema import TextLine
-from zope.container.interfaces import IContainer
 
 _ = MessageFactory('zope')
 
@@ -28,7 +27,7 @@ class IContent(IBaseContent):
     """
 
 
-class IContainer(IBaseContent, IContainer):
+class IContainer(IBaseContent):
     """Marker interface for folderish dolmen objects.
     """
 
