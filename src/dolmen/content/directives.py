@@ -70,21 +70,25 @@ class schema(martian.Directive):
     store = martian.ONCE
     validate = validateSchema
 
-    def initialize(self, schemas):
-        formfields = Fields(*schemas)
-        for field in formfields:
-            fname = field.__name__
-            if not fname in self.frame.f_locals:
-                self.frame.f_locals[fname] = FieldProperty(field)
-
     def factory(self, *schemas):
-        self.initialize(schemas)
         addClassAdvisor(_schema_advice, depth=3)
         return list(schemas)
 
 
 def _schema_advice(cls):
     interfaces = schema.bind().get(cls)
+    
+    formfields = Fields(*interfaces)
+    for field in formfields:
+        fname = field.__name__
+        if not fname in cls.__dict__:
+            found = False
+            for superseed in cls.__mro__:
+                if fname in superseed.__dict__:
+                    found = True
+            if not found:
+                setattr(cls, fname, FieldProperty(field))
+    
     classImplements(cls, *interfaces)
     return cls
 

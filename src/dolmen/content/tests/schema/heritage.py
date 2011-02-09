@@ -8,16 +8,20 @@ Herited schemas example
 
   >>> dolmen.schema.bind().get(gilgamesh)
   [<InterfaceClass ...IMythologicalHero>]
+
+The base properties must be inherited, thanks to the schema applier::
+
+  >>> MesopotamianGod.title
+  <zope.dublincore.property.DCProperty object at ...>
   
 """
 import dolmen.content as dolmen
-from zope.interface import Interface
 from zope.schema import TextLine
 from grokcore.component import baseclass
 from grokcore.content import Container
 
 
-class IMythologicalHero(Interface):
+class IMythologicalHero(dolmen.IBaseContent):
     """A hero that transcended History.
     """
     homecity = TextLine(
