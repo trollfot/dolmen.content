@@ -82,13 +82,9 @@ def _schema_advice(cls):
     for field in formfields:
         fname = field.__name__
         if not fname in cls.__dict__:
-            found = False
-            for superseed in cls.__mro__:
-                if fname in superseed.__dict__:
-                    found = True
-            if not found:
+            if not hasattr(cls, fname):
                 setattr(cls, fname, FieldProperty(field))
-    
+
     classImplements(cls, *interfaces)
     return cls
 
