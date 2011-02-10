@@ -81,9 +81,8 @@ def _schema_advice(cls):
     formfields = Fields(*interfaces)
     for field in formfields:
         fname = field.__name__
-        if not fname in cls.__dict__:
-            if not hasattr(cls, fname):
-                setattr(cls, fname, FieldProperty(field))
+        if not hasattr(cls, fname):
+            setattr(cls, fname, FieldProperty(field))
 
     classImplements(cls, *interfaces)
     return cls
