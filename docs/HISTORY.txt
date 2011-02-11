@@ -13,8 +13,8 @@ the previous ones::
 
 * There are no longer any schema defined by default.
 
-*``dolmen.content`` contents no longer provide a dublincore `title`
- property and are no longer "attribute annotatable" by default.
+* ``dolmen.content`` contents no longer provide a dublincore `title`
+  property and are no longer "attribute annotatable" by default.
 
 
 0.6.2 (2011-02-10)
