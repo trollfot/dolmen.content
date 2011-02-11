@@ -5,7 +5,7 @@ Changelog
 ----------------
 
 This version is a major breakdown and is not backward compatible with
-the previous ones::
+the previous ones:
 
 * `BaseContent` no longer exists. It has been merged with `Content`.
 
