@@ -9,10 +9,10 @@ Therefore, only one schema can define him pretty good :
   >>> conan = Barbarian()
   >>> IBarbarian.providedBy(conan)
   True
-  >>> dolmen.IBaseContent.providedBy(conan)
+  >>> dolmen.IContent.providedBy(conan)
   True
  
-Of course, our Barbarian is an IBarbarian but still a IBaseContent.
+Of course, our Barbarian is an IBarbarian but still a IContent.
 It still has the title and __content_type__ attributes. It also has the
 attributes defined in the IBarbarian interface, set by default.
 

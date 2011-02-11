@@ -49,9 +49,10 @@ We now have a useable factory. We can generate SweetRolls on demand.
 
 import dolmen.content as dolmen
 from zope.schema import List
+from zope.interface import Interface
 
 
-class ICake(dolmen.IBaseContent):
+class ICake(Interface):
     """A sweet eatable object.
     """
     ingredients = List(

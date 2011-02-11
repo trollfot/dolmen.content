@@ -20,7 +20,7 @@ This content is getting a base interface and a base schema.
 It means that the attributes are set by default on the content type.
 Of course, the basic fields validations are respected.
 
-  >>> dolmen.IBaseContent.providedBy(mongo)
+  >>> IDummySchema.providedBy(mongo)
   True
   >>> mongo.title
   u''
@@ -53,7 +53,7 @@ and registered, using the package path and class name as an identifier.
   <class 'dolmen.content.tests.overview.simple.Dummy'>
 
   >>> myfactory.getSchema()
-  [<InterfaceClass dolmen.content.interfaces.IBaseContent>]
+  [<InterfaceClass dolmen.content.tests.overview.simple.IDummySchema>]
 
 The factory describes the generated content::
 
@@ -100,6 +100,15 @@ Content type with no directives
 """
 
 import dolmen.content as dolmen
+from zope.schema import TextLine
+from zope.interface import Interface
+
+
+class IDummySchema(Interface):
+    title = TextLine(
+        title=u"Title",
+        required=True,
+        default=u'')
 
 
 class Dummy(dolmen.Content):
@@ -108,6 +117,7 @@ class Dummy(dolmen.Content):
     dolmen.name('DummyContent')
     dolmen.title('A Dummy content')
     dolmen.description('A very dumb and dull content.')
+    dolmen.schema(IDummySchema)
 
 
 class InfoLess(dolmen.Content):

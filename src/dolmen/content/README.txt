@@ -32,8 +32,9 @@ non-exhaustive test::
 
   >>> import dolmen.content
   >>> from zope import schema
+  >>> from zope.interface import Interface
 
-  >>> class IContentSchema(dolmen.content.IBaseContent):
+  >>> class IContentSchema(Interface):
   ...    text = schema.Text(title=u"A body text", default=u"N/A")
 
   >>> class MyContent(dolmen.content.Content):

@@ -4,32 +4,30 @@ import grokcore.content
 from dolmen.content import interfaces, require
 from dolmen.content.directives import schema, Fields
 from grokcore.component import baseclass
-from zope.dublincore.property import DCProperty
 from zope.interface import implements
 
 
-class BaseContent(grokcore.content.Model):
+class Content(grokcore.content.Model):
     baseclass()
-    schema(interfaces.IBaseContent)
     require("zope.ManageContent")
-
-    title = DCProperty('title')
+    implements(interfaces.IContent)
 
     def __init__(self, **kwargs):
         grokcore.content.Model.__init__(self)
         if kwargs:
             schemas = schema.bind().get(self)
-            ifields = Fields(*schemas)
-            for key, value in kwargs.items():
-                ifield = ifields.get(key)
-                if ifield is None:
-                    continue
-                field = ifield.bind(self)
-                field.validate(value)
-                field.set(self, value)
+            if schemas:
+                ifields = Fields(*schemas)
+                for key, value in kwargs.items():
+                    ifield = ifields.get(key)
+                    if ifield is None:
+                        continue
+                    field = ifield.bind(self)
+                    field.validate(value)
+                    field.set(self, value)
 
 
-class Container(BaseContent, grokcore.content.Container):
+class Container(Content, grokcore.content.Container):
     """A dolmen folderish content type.
     """
     baseclass()
@@ -37,10 +35,10 @@ class Container(BaseContent, grokcore.content.Container):
 
     def __init__(self, **kwargs):
         grokcore.content.Container.__init__(self)
-        BaseContent.__init__(self, **kwargs)
+        Content.__init__(self, **kwargs)
 
 
-class OrderedContainer(BaseContent, grokcore.content.OrderedContainer):
+class OrderedContainer(Content, grokcore.content.OrderedContainer):
     """A dolmen folderish content type with ordered keys.
     """
     baseclass()
@@ -48,11 +46,4 @@ class OrderedContainer(BaseContent, grokcore.content.OrderedContainer):
 
     def __init__(self, **kwargs):
         grokcore.content.OrderedContainer.__init__(self)
-        BaseContent.__init__(self, **kwargs)
-
-
-class Content(BaseContent):
-    """A dolmen content type.
-    """
-    baseclass()
-    implements(interfaces.IContent)
+        Content.__init__(self, **kwargs)

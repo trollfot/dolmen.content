@@ -38,10 +38,11 @@ Providing a non-existing field value will do nothing::
 
 """
 import dolmen.content
+from zope.interface import Interface
 from zope.schema import Int, List, TextLine
 
 
-class IThane(dolmen.content.IBaseContent):
+class IThane(Interface):
     """Defines a Scotland's Thane
     """
     age = Int(

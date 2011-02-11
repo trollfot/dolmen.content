@@ -2,32 +2,22 @@
 
 import zope.component.interfaces
 from dolmen.field import GlobalClass
-from zope.annotation.interfaces import IAttributeAnnotatable
 from zope.i18nmessageid import MessageFactory
-from zope.interface import Attribute
+from zope.interface import Interface, Attribute
 from zope.schema import TextLine
 
 _ = MessageFactory('zope')
 
 
-class IBaseContent(IAttributeAnnotatable):
-    """Marker interface for dolmen base content.
+class IContent(Interface):
+    """Marker interface for contentish dolmen objects.
     """
-    title = TextLine(
-        title=_(u"Title"),
-        required=True)
-
     __content_type__ = Attribute(
         """Type of the object. Usually set by the grokker, using the
         grok.name directive.""")
 
 
-class IContent(IBaseContent):
-    """Marker interface for contentish dolmen objects.
-    """
-
-
-class IContainer(IBaseContent):
+class IContainer(IContent):
     """Marker interface for folderish dolmen objects.
     """
 
@@ -43,7 +33,7 @@ class IFactory(zope.component.interfaces.IFactory):
     factory = GlobalClass(
         required=True,
         title=u"Class used as a factory",
-        schema=IBaseContent)
+        schema=IContent)
 
     addform = TextLine(
         required=True,
@@ -72,7 +62,4 @@ class IFactory(zope.component.interfaces.IFactory):
         """
 
 
-__all__ = (
-    'IBaseContent', 'IContent',
-    'IContainer', 'IOrderedContainer', 'IFactory',
-    )
+__all__ = ('IContent', 'IContainer', 'IOrderedContainer', 'IFactory')

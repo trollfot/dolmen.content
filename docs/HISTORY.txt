@@ -1,6 +1,22 @@
 Changelog
 =========
 
+0.7 (2011-02-11)
+----------------
+
+This version is a major breakdown and is not backward compatible with
+the previous ones::
+
+* `BaseContent` no longer exists. It has been merged with `Content`.
+
+* The `IBaseContent` interface is gone.
+
+* There are no longer any schema defined by default.
+
+*``dolmen.content`` contents no longer provide a dublincore `title`
+ property and are no longer "attribute annotatable" by default.
+
+
 0.6.2 (2011-02-10)
 ------------------
 

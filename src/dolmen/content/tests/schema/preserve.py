@@ -16,12 +16,12 @@ schema at the class level. These values are thus preserved::
 """
 
 import dolmen.content
+from zope.interface import Interface
 from zope.schema import Choice
-from zope.schema.fieldproperty import FieldProperty
 
 
-class IViking(dolmen.content.IBaseContent):
-    """Defines a Scotland's Thane
+class IViking(Interface):
+    """Defines a Norseman
     """
     rank = Choice(
         title=u"Rank of the viking warrior",
@@ -31,7 +31,6 @@ class IViking(dolmen.content.IBaseContent):
 
 class Ynglingar(dolmen.content.Content):
     dolmen.content.schema(IViking)
-    rank = FieldProperty(IViking['rank'])
 
 
 class JomsWarrior(dolmen.content.Content):

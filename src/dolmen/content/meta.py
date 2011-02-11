@@ -33,7 +33,7 @@ class FactoryGrokker(martian.GlobalGrokker):
 
 
 class ContentTypeGrokker(martian.ClassGrokker):
-    martian.component(dolmen.content.BaseContent)
+    martian.component(dolmen.content.Content)
     martian.directive(dolmen.content.factory)
     martian.directive(grokcore.component.name,
                       get_default=dolmen.content.factoring.default_name)

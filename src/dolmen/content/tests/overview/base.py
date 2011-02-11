@@ -8,22 +8,33 @@ after grokking.
 We first declare our components and grok them::
 
   >>> import dolmen.content
+  >>> from zope.schema import TextLine
+  >>> from zope.interface import Interface
   >>> from grokcore.component.testing import grok_component
+
+  >>> class TitleSchema(Interface):
+  ...     title = TextLine(
+  ...       title=u'Title',
+  ...       required=True,
+  ...       default=u'')
 
   >>> class Mammoth(dolmen.content.Content):
   ...   dolmen.content.name('mammoth')
+  ...   dolmen.content.schema(TitleSchema)
 
   >>> grok_component('mammoth', Mammoth)
   True
 
   >>> class Cave(dolmen.content.Container):
   ...   dolmen.content.name('cave')
+  ...   dolmen.content.schema(TitleSchema)
 
   >>> grok_component('cave', Cave)
   True
 
   >>> class HunterQuiver(dolmen.content.OrderedContainer):
   ...   dolmen.content.name('quiver')
+  ...   dolmen.content.schema(TitleSchema)
 
   >>> grok_component('quiver', HunterQuiver)
   True

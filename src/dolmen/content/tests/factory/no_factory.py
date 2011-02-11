@@ -17,9 +17,10 @@ even if a factory directive is set on the class.
 
 import dolmen.content as dolmen
 from zope.schema import Bool
+from zope.interface import Interface
 
 
-class ISomethingThatShouldntBe(dolmen.IBaseContent):
+class ISomethingThatShouldntBe(Interface):
     """A cyclopean, undescriptable and non euclidean horror.
     """
     sanity_failure = Bool(
@@ -36,5 +37,7 @@ class Nyarlathotep(dolmen.Content):
     """
     dolmen.name(u'Impossible to name.')
     dolmen.schema(ISomethingThatShouldntBe)
+
+    # This is contradictory
     dolmen.nofactory()
     dolmen.factory(SunkenTemple)

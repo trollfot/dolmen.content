@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 from os.path import join
 
 name = 'dolmen.content'
-version = '0.6.2'
+version = '0.7.0'
 readme = open(join('src', 'dolmen', 'content', 'README.txt')).read()
 history = open(join('docs', 'HISTORY.txt')).read()
 
@@ -13,9 +13,7 @@ install_requires = [
     'grokcore.security',
     'martian >= 0.12',
     'setuptools',
-    'zope.annotation',
     'zope.component',
-    'zope.dublincore',
     'zope.i18nmessageid',
     'zope.interface',
     'zope.schema',
