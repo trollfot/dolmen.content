@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from dolmen.content import schema, name, title, description
+from dolmen.content import name, title, description, get_schema
 from dolmen.content.interfaces import IFactory
 from zope.schema.fieldproperty import FieldProperty
 from zope.interface import implements, implementedBy
@@ -24,7 +24,7 @@ class Factory(object):
         return implementedBy(self.factory)
 
     def getSchema(self):
-        return schema.bind().get(self.factory)
+        return get_schema(self.factory)
 
     @property
     def name(self):

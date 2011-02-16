@@ -2,18 +2,16 @@
 Schema directive
 ================
 
-  >>> from dolmen.content import schema
+  >>> from dolmen.content import schema, get_schema
 
   >>> class Test(object):
   ...     pass
 
-  >>> print schema.bind().get(Test)
+  >>> print get_schema(Test)
   None
-
   >>> inst = Test()
-  >>> print schema.bind().get(Test)
+  >>> print get_schema(inst)
   None
-
 
 
   >>> class TestWrongSchema(object):
@@ -22,7 +20,6 @@ Schema directive
   ...
   GrokImportError: schema directive can only use interface classes.
   toto is not an interface class.
-
 
 
   >>> from zope.interface import Interface
@@ -36,16 +33,23 @@ Schema directive
   >>> class TestWithSingleSchema(object):
   ...     schema(SchemaA)
 
-  >>> print schema.bind().get(TestWithSingleSchema)
+  >>> get_schema(TestWithSingleSchema)
   [<InterfaceClass dolmen.content.tests.schema.directive.SchemaA>]
-
 
 
   >>> class TestWithMultipleSchema(object):
   ...     schema(SchemaA, SchemaB)
 
-  >>> print schema.bind().get(TestWithMultipleSchema)
+  >>> get_schema(TestWithMultipleSchema)
   [<InterfaceClass dolmen.content.tests.schema.directive.SchemaA>,
    <InterfaceClass dolmen.content.tests.schema.directive.SchemaB>]
+
+
+  >>> from martian import baseclass
+  >>> class baseClass(object):
+  ...     baseclass()
+
+  >>> print get_schema(baseClass)
+  None
 
 """

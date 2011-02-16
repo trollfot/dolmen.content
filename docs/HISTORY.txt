@@ -1,6 +1,15 @@
 Changelog
 =========
 
+0.7.1 (2011-02-16)
+------------------
+
+* Added util function to retrieve the schema from a component. This
+  deals with the martian new handling of baseclasses. `get_schema`
+  should return the `schema` directive default value, even if called
+  on a baseclass that does not define `schema`.
+
+
 0.7 (2011-02-11)
 ----------------
 
