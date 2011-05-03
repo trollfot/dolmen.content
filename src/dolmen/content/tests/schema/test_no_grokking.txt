@@ -1,4 +1,4 @@
-"""
+
 To Grok or not to grok
 ======================
 
@@ -24,5 +24,4 @@ A simple example :
   u'Boo'
   >>> obj.number
   1
-  
-"""
+

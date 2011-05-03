@@ -1,4 +1,10 @@
 """
+First grok::
+
+  >>> import dolmen.content.testing
+  >>> dolmen.content.testing.grok('dolmen.content.meta',
+  ...                             'dolmen.content.tests.schema.test_multiple')
+
 Multiple schemas example
 ========================
 
@@ -23,7 +29,7 @@ The other attributes of our hero are still set to default.
 
   >>> sonja.armor
   u'metal bikini'
-  
+
 """
 import dolmen.content as dolmen
 from zope.interface import Interface
@@ -38,7 +44,7 @@ class IFemaleHero(Interface):
         values=[u'metal bikini', u'leather bikini'],
         default=u'metal bikini')
 
-    
+
 class IBarbarian(Interface):
     """A barbarian. Usually only wearing a leather underpants.
     """

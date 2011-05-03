@@ -1,23 +1,8 @@
-"""
-Values preservation
-===================
-
-A `dolmen.content` content type can provide values described in the
-schema at the class level. These values are thus preserved::
-
-  >>> harfagri = Ynglingar()
-  >>> harfagri.rank
-  u'Jarl'
-
-  >>> gormsson = JomsWarrior()
-  >>> gormsson.rank
-  u'Bondi'
-
-"""
-
 import dolmen.content
+from dolmen.content import testing
 from zope.interface import Interface
 from zope.schema import Choice
+from zope.testing.cleanup import cleanUp
 
 
 class IViking(Interface):
@@ -36,3 +21,28 @@ class Ynglingar(dolmen.content.Content):
 class JomsWarrior(dolmen.content.Content):
     dolmen.content.schema(IViking)
     rank = u"Bondi"
+
+
+def setup_module(module):
+    """ grok the publish module
+    """
+    testing.grok("dolmen.content.meta",
+                 "dolmen.content.tests.schema.test_preserve")
+
+
+def teardown_module(module):
+    """ undo groking
+    """
+    cleanUp()
+
+
+def test_preserve():
+    """
+    A `dolmen.content` content type can provide values described in the
+    schema at the class level. These values are thus preserved::
+    """
+    harfagri = Ynglingar()
+    assert harfagri.rank == u'Jarl'
+
+    gormsson = JomsWarrior()
+    assert gormsson.rank == u'Bondi'

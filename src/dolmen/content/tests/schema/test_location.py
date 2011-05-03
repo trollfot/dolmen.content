@@ -1,4 +1,10 @@
 """
+First grok::
+
+  >>> import dolmen.content.testing
+  >>> dolmen.content.testing.grok('dolmen.content.meta',
+  ...                             'dolmen.content.tests.schema.test_location')
+
 Content location
 ================
 
@@ -7,7 +13,7 @@ hierarchy and, therefore, hold informations about its current position
 or location.
 
   >>> from zope.location import ILocation
- 
+
 Let's work with a content and a container::
 
   >>> cave = Cave()
@@ -37,9 +43,9 @@ important::
 
   >>> moody.__name__
   u'ugly cat'
-  
+
   >>> moody.__parent__
-  <dolmen.content.tests.schema.location.Cave object at ...>
+  <dolmen.content.tests.schema.test_location.Cave object at ...>
 
 While deleted from the container, the attributes will be set to None::
 

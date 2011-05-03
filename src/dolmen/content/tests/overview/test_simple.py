@@ -1,4 +1,16 @@
 """
+
+Initialisation
+=================
+
+
+After grokking::
+  >>> from grokcore.component import testing
+
+  >>> import dolmen.content.testing
+  >>> dolmen.content.testing.grok('dolmen.content.meta',
+  ...                             'dolmen.content.tests.overview.test_simple')
+
 Instanciation
 =============
 
@@ -47,13 +59,13 @@ and registered, using the package path and class name as an identifier.
   >>> from dolmen.content import IFactory
   >>> from zope.component import getUtility
   >>> myfactory = getUtility(IFactory,
-  ...                        name='dolmen.content.tests.overview.simple.Dummy')
+  ...                   name='dolmen.content.tests.overview.test_simple.Dummy')
 
   >>> myfactory.factory
-  <class 'dolmen.content.tests.overview.simple.Dummy'>
+  <class 'dolmen.content.tests.overview.test_simple.Dummy'>
 
   >>> myfactory.getSchema()
-  [<InterfaceClass dolmen.content.tests.overview.simple.IDummySchema>]
+  [<InterfaceClass dolmen.content.tests.overview.test_simple.IDummySchema>]
 
 The factory describes the generated content::
 
@@ -80,7 +92,7 @@ Content type with no directives
 -------------------------------
 
   >>> infoless = getUtility(IFactory,
-  ...              name='dolmen.content.tests.overview.simple.InfoLess')
+  ...              name='dolmen.content.tests.overview.test_simple.InfoLess')
 
   >>> infoless.name
   'InfoLess'

@@ -1,4 +1,11 @@
 """
+
+First grok::
+
+  >>> import dolmen.content.testing
+  >>> dolmen.content.testing.grok('dolmen.content.meta',
+  ...                            'dolmen.content.tests.schema.test_initialize')
+
 Values initialization
 =====================
 
@@ -34,7 +41,7 @@ Providing a non-existing field value will do nothing::
 
   >>> lady = Thane(madness=True)
   >>> print lady
-  <dolmen.content.tests.schema.initialize.Thane object at ...>
+  <dolmen.content.tests.schema.test_initialize.Thane object at ...>
 
 """
 import dolmen.content

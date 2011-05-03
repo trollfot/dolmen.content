@@ -1,4 +1,10 @@
 """
+First grok::
+
+  >>> import dolmen.content.testing
+  >>> dolmen.content.testing.grok('dolmen.content.meta',
+  ...                             'dolmen.content.tests.schema.test_single')
+
 One schema example
 ==================
 
@@ -9,9 +15,11 @@ Therefore, only one schema can define him pretty good :
   >>> conan = Barbarian()
   >>> IBarbarian.providedBy(conan)
   True
-  >>> dolmen.IContent.providedBy(conan)
+
+  >>> from dolmen.content.interfaces import IContent
+  >>> IContent.providedBy(conan)
   True
- 
+
 Of course, our Barbarian is an IBarbarian but still a IContent.
 It still has the title and __content_type__ attributes. It also has the
 attributes defined in the IBarbarian interface, set by default.
@@ -27,7 +35,7 @@ import dolmen.content as dolmen
 from zope.interface import Interface
 from zope.schema import TextLine, Int
 
-    
+
 class IBarbarian(Interface):
     """A barbarian. Usually only wearing a leather underpants.
     """

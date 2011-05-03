@@ -1,4 +1,10 @@
 """
+First grok::
+
+  >>> import dolmen.content.testing
+  >>> dolmen.content.testing.grok('dolmen.content.meta',
+  ...                         'dolmen.content.tests.factory.test_auto_factory')
+
 Auto factories
 ==============
 
@@ -15,18 +21,19 @@ Factory. In this file, we have only one IContext and only one Factory class.
 Therefore, the link between the two will be done automatically :
 
   >>> from zope.component import getUtility, queryUtility
-  >>> factory = getUtility(dolmen.IFactory, 'Joe')
+  >>> from dolmen.content.interfaces import IFactory
+  >>> factory = getUtility(IFactory, 'Joe')
   >>> isinstance(factory, Baker)
   True
   >>> factory.description
   u'Sweet rolls baker since 1884'
   >>> factory.getSchema()
-  [<InterfaceClass dolmen.content.tests.factory.auto_factory.ICake>]
+  [<InterfaceClass dolmen.content.tests.factory.test_auto_factory.ICake>]
 
 If binded automatically, the generic factory is not registered.
 
-  >>> auto_factory = queryUtility(dolmen.IFactory,
-  ...                'dolmen.content.tests.factory.auto_factory.SweetRoll')
+  >>> auto_factory = queryUtility(IFactory,
+  ...               'dolmen.content.tests.factory.test_auto_factory.SweetRoll')
   >>> auto_factory is None
   True
 

@@ -14,7 +14,7 @@ from zope.interface import implements
 class Content(Contained, persistent.Persistent):
     baseclass()
     require("zope.ManageContent")
-    
+
     implements(IAttributeAnnotatable, IContext, interfaces.IContent)
 
     def __init__(self, **kwargs):

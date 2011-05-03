@@ -1,4 +1,4 @@
-"""
+
 Content type
 ============
 
@@ -10,6 +10,9 @@ class name, if no `name` directive is used::
 
   >>> from dolmen.content import Content
   >>> from grokcore.component import testing
+  
+  >>> import dolmen.content.testing 
+  >>> dolmen.content.testing.grok('dolmen.content.meta')
 
 
 No directive
@@ -21,8 +24,7 @@ No directive
   >>> SomeContent.__content_type__
   Traceback (most recent call last):
   ...
-  AttributeError: type object 'SomeContent' has no attribute
-  '__content_type__'
+  AttributeError: type object 'SomeContent' has no attribute '__content_type__'
 
   >>> testing.grok_component('somecontent', SomeContent)
   True
@@ -42,8 +44,7 @@ Directive
   >>> AnotherContent.__content_type__
   Traceback (most recent call last):
   ...
-  AttributeError: type object 'AnotherContent' has no attribute
-  '__content_type__'
+  AttributeError: type object 'AnotherContent' has no attribute '__content_type__'
 
   >>> testing.grok_component('another', AnotherContent)
   True
@@ -84,4 +85,4 @@ Utility function
   >>> print get_content_type(toto)
   None
 
-"""
+

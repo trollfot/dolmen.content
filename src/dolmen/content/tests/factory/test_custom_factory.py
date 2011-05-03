@@ -1,11 +1,18 @@
 """
+First grok::
+
+  >>> import dolmen.content.testing
+  >>> dolmen.content.testing.grok('dolmen.content.meta',
+  ...                       'dolmen.content.tests.factory.test_custom_factory')
+
 Custom factories
 ================
 
 Explicitly linked factories are registered normally::
 
   >>> from zope.component import getUtility, queryUtility
-  >>> joe = getUtility(dolmen.IFactory, 'baker_joe')
+  >>> from dolmen.content.interfaces import IFactory
+  >>> joe = getUtility(IFactory, 'baker_joe')
   >>> isinstance(joe, BakerJoe)
   True
 
@@ -17,7 +24,7 @@ Explicitly linked factories are registered normally::
 Factories that are not linked with the `factory` directive or by
 natural association are disregarded::
 
-  >>> steve = queryUtility(dolmen.IFactory, 'baker_steve')
+  >>> steve = queryUtility(IFactory, 'baker_steve')
   >>> steve is None
   True
 

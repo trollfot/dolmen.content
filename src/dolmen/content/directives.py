@@ -77,7 +77,7 @@ class schema(martian.Directive):
 
 def _schema_advice(cls):
     interfaces = schema.bind().get(cls)
-    
+
     formfields = Fields(*interfaces)
     for field in formfields:
         fname = field.__name__
