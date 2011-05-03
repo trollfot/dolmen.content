@@ -3,16 +3,18 @@ from os.path import join
 
 name = 'dolmen.content'
 version = '0.7.1'
-readme = open(join('src', 'dolmen', 'content', 'README.txt')).read()
+readme = (open(join('src', 'dolmen', 'content', 'README.txt')).read() + '\n' +
+          open(join('src', 'dolmen', 'content', 'test_main.txt')).read())
 history = open(join('docs', 'HISTORY.txt')).read()
 
 install_requires = [
+    'dolmen.container',
     'dolmen.field >= 0.3',
     'grokcore.component >= 2.2',
-    'grokcore.content',
     'grokcore.security',
     'martian >= 0.12',
     'setuptools',
+    'zope.annotation',
     'zope.component',
     'zope.i18nmessageid',
     'zope.interface',
@@ -20,10 +22,10 @@ install_requires = [
     ]
 
 tests_require = [
-    'zope.container',
-    'zope.site',
-    'zope.traversing',
+    'pytest',
     'zope.location',
+    'cromlech.io',
+    'cromlech.browser',
     ]
 
 setup(name = name,

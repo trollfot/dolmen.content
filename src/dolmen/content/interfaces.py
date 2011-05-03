@@ -6,6 +6,8 @@ from zope.i18nmessageid import MessageFactory
 from zope.interface import Interface, Attribute
 from zope.schema import TextLine
 
+from dolmen.container.interfaces import IContainer, IOrderedContainer
+
 _ = MessageFactory('zope')
 
 
@@ -15,16 +17,6 @@ class IContent(Interface):
     __content_type__ = Attribute(
         """Type of the object. Usually set by the grokker, using the
         grok.name directive.""")
-
-
-class IContainer(IContent):
-    """Marker interface for folderish dolmen objects.
-    """
-
-
-class IOrderedContainer(IContainer):
-    """Marker interface for folderish dolmen objects with ordered keys.
-    """
 
 
 class IFactory(zope.component.interfaces.IFactory):
