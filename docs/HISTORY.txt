@@ -1,6 +1,21 @@
 Changelog
 =========
 
+2.0a1 (2011-05-04)
+------------------
+
+* Tests are now done through ``py.test``
+
+* ``dolmen.content`` now bases the grokking on `Model`, a
+  non-persistent content type.
+
+* The package no longer depends on ``zope.annotation``.
+
+* The `base` module was renamed to `components`.
+
+* We now use ``dolmen.container`` instead of ``zope.container``.
+
+
 0.7.1 (2011-02-16)
 ------------------
 
