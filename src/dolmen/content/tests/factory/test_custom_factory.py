@@ -1,37 +1,23 @@
+# -*- coding: utf-8 -*-
 """
-First grok::
-
-  >>> import dolmen.content.testing
-  >>> dolmen.content.testing.grok('dolmen.content.meta',
-  ...                       'dolmen.content.tests.factory.test_custom_factory')
-
-Custom factories
-================
-
-Explicitly linked factories are registered normally::
-
-  >>> from zope.component import getUtility, queryUtility
-  >>> from dolmen.content.interfaces import IFactory
-  >>> joe = getUtility(IFactory, 'baker_joe')
-  >>> isinstance(joe, BakerJoe)
-  True
-
-  >>> joe.title
-  u"Joe's bakery"
-  >>> joe.description
-  u'I am a totally custom factory.'
-
-Factories that are not linked with the `factory` directive or by
-natural association are disregarded::
-
-  >>> steve = queryUtility(IFactory, 'baker_steve')
-  >>> steve is None
-  True
-
 """
 
 import dolmen.content as dolmen
+from dolmen.content import testing
+from dolmen.content.interfaces import IFactory
 from zope.interface import Interface, implements
+from zope.component import getUtility, queryUtility
+from zope.testing.cleanup import cleanUp
+
+
+def setup_module(module):
+    testing.grok(
+        "dolmen.content.meta",
+        "dolmen.content.tests.factory.test_custom_factory")
+
+
+def teardown_module(module):
+    cleanUp()
 
 
 class IBread(Interface):
@@ -55,3 +41,14 @@ class Baguette(dolmen.Content):
     dolmen.name(u'White fresh bread')
     dolmen.factory(BakerJoe)
     implements(IBread)
+
+
+def test_custom_factory():
+    joe = getUtility(IFactory, 'baker_joe')
+    assert isinstance(joe, BakerJoe)
+
+    assert joe.title == u"Joe's bakery"
+    assert joe.description == u'I am a totally custom factory.'
+
+    steve = queryUtility(IFactory, 'baker_steve')
+    assert steve is None

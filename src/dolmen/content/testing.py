@@ -4,10 +4,9 @@ from grokcore.component import zcml
 from zope.configuration.config import ConfigurationMachine
 
 
-def grok(*module_name):
+def grok(*modules):
     config = ConfigurationMachine()
-    zcml.do_grok('zope.component', config)
     zcml.do_grok('grokcore.component.meta', config)
-    for mn in module_name:
-        zcml.do_grok(mn, config)
+    for module in modules:
+         zcml.do_grok(module, config)
     config.execute_actions()

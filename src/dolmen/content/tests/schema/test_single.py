@@ -1,39 +1,22 @@
-"""
-First grok::
-
-  >>> import dolmen.content.testing
-  >>> dolmen.content.testing.grok('dolmen.content.meta',
-  ...                             'dolmen.content.tests.schema.test_single')
-
-One schema example
-==================
-
-Conan is a simple Barbarian. Thinking is an everyday challenge for him.
-While he's not punching camels, he's resting or drinking in a tavern.
-Therefore, only one schema can define him pretty good :
-
-  >>> conan = Barbarian()
-  >>> IBarbarian.providedBy(conan)
-  True
-
-  >>> from dolmen.content.interfaces import IContent
-  >>> IContent.providedBy(conan)
-  True
-
-Of course, our Barbarian is an IBarbarian but still a IContent.
-It still has the title and __content_type__ attributes. It also has the
-attributes defined in the IBarbarian interface, set by default.
-
-  >>> conan.nickname
-  u'The Barbarian'
-  >>> conan.kills
-  100
-
+# -*- coding: utf-8 -*-
+"""Test single schema declaration.
 """
 
 import dolmen.content as dolmen
+from dolmen.content import testing
 from zope.interface import Interface
 from zope.schema import TextLine, Int
+from zope.testing.cleanup import cleanUp
+
+
+def setup_module(module):
+    testing.grok(
+        "dolmen.content.meta",
+        "dolmen.content.tests.schema.test_single")
+
+
+def teardown_module(module):
+    cleanUp()
 
 
 class IBarbarian(Interface):
@@ -49,7 +32,15 @@ class IBarbarian(Interface):
 
 
 class Barbarian(dolmen.Content):
-    """A barbarian content
+    """A barbaric content.
     """
     dolmen.name('male')
     dolmen.schema(IBarbarian)
+
+
+def test_unique_schema():
+    conan = Barbarian()
+    assert IBarbarian.providedBy(conan)
+    assert dolmen.IContent.providedBy(conan)
+    assert conan.nickname == u'The Barbarian'
+    assert conan.kills == 100

@@ -6,6 +6,7 @@ from zope.i18nmessageid import MessageFactory
 from zope.interface import Interface, Attribute
 from zope.schema import TextLine
 
+# Convenient imports.
 from dolmen.container.interfaces import IContainer, IOrderedContainer
 
 _ = MessageFactory('zope')
@@ -30,7 +31,7 @@ class IFactory(zope.component.interfaces.IFactory):
     addform = TextLine(
         required=True,
         title=u"Name of the add form",
-        default=u"dolmen.add")
+        default=u"add")
 
     name = TextLine(
         required=True,

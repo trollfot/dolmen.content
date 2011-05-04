@@ -4,7 +4,7 @@ from grokcore.component import name, title, description
 from grokcore.security import require
 
 from dolmen.content.interfaces import *
-from dolmen.content.directives import schema, factory, nofactory
-from dolmen.content.base import Content, Container, OrderedContainer
-from dolmen.content.utils import get_content_type, get_schema
+from dolmen.content.directives import *
+from dolmen.content.utils import *
+from dolmen.content.components import *
 from dolmen.content.factoring import Factory

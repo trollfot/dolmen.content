@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import dolmen.content
 from dolmen.content import testing
 from zope.interface import Interface
@@ -26,8 +28,9 @@ class JomsWarrior(dolmen.content.Content):
 def setup_module(module):
     """ grok the publish module
     """
-    testing.grok("dolmen.content.meta",
-                 "dolmen.content.tests.schema.test_preserve")
+    testing.grok(
+        "dolmen.content.meta",
+        "dolmen.content.tests.schema.test_preserve")
 
 
 def teardown_module(module):

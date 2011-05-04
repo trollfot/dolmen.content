@@ -82,7 +82,7 @@ Finally, the factory provides the name of the view serving as an add
 form to add the content through the web::
 
   >>> myfactory.addform
-  u'dolmen.add'
+  u'add'
 
   >>> from zope.interface.verify import verifyObject
   >>> verifyObject(IFactory, myfactory)
@@ -104,7 +104,7 @@ Content type with no directives
   u''
 
   >>> infoless.addform
-  u'dolmen.add'
+  u'add'
 
   >>> verifyObject(IFactory, infoless)
   True
