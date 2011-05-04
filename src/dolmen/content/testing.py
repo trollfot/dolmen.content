@@ -8,5 +8,5 @@ def grok(*modules):
     config = ConfigurationMachine()
     zcml.do_grok('grokcore.component.meta', config)
     for module in modules:
-         zcml.do_grok(module, config)
+        zcml.do_grok(module, config)
     config.execute_actions()
