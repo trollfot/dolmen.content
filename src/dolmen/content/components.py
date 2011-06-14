@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 
 from persistent import Persistent
+from cromlech.container.contained import Contained
 
 from dolmen.content.directives import schema
 from dolmen.content.utils import bootstrap_object
 from dolmen.content.interfaces import IContent, IContainer, IOrderedContainer
-
-from dolmen.container.contained import Contained
 from dolmen.container.components import BTreeContainer, OrderedBTreeContainer
 
 from grokcore.security import require

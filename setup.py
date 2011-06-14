@@ -4,13 +4,14 @@ from setuptools import setup, find_packages
 from os.path import join
 
 name = 'dolmen.content'
-version = '2.0a1'
+version = '2.0a2'
 readme = open(join('src', 'dolmen', 'content', 'README.txt')).read()
 history = open(join('docs', 'HISTORY.txt')).read()
 
 install_requires = [
     'ZODB3 >= 3.10',  # Persistent.
-    'dolmen.container',
+    'cromlech.container',
+    'dolmen.container >= 0.2',
     'dolmen.field >= 0.3',
     'grokcore.component >= 2.4',
     'grokcore.security',

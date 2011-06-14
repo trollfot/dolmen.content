@@ -7,7 +7,7 @@ from zope.interface import Interface, Attribute
 from zope.schema import TextLine
 
 # Convenient imports.
-from dolmen.container.interfaces import IContainer, IOrderedContainer
+from cromlech.container.interfaces import IContainer, IOrderedContainer
 
 _ = MessageFactory('zope')
 
